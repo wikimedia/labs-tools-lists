@@ -23,6 +23,11 @@
             <span class="icon-bar"></span>
           </button>
           <a class="brand {{{ Request::is('lists/') ? ' active' : '' }}}" href="/~fale">Lists</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right {{{ Request::is('/lists/src') ? ' active' : '' }}}">
+              <a href="/lists/src" class="navbar-link">Sources</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
