@@ -5,7 +5,7 @@
 @section('content')
     <h1>{{$path}}</h1>
     <?php
-	    $dir = "../query/" . $path;
+	    $dir = base_path() . "/query/" . $path;
         $files = scandir($dir);
         $out = "";
         if ($path != "")
