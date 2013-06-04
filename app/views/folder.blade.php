@@ -1,29 +1,29 @@
 @extends('layout')
 
-@section('title')File - {{$path}}@stop
+@section('title')Folder - {{$path}}@stop
 
 @section('content')
     <h1>{{$path}}</h1>
     <?php
-	    $dir = base_path() . "/query/" . $path;
-        $files = scandir($dir);
-        $out = "";
-        if ($path != "")
-            if(strpos($path, "/"))
-                $out .= "<a href=\"" . substr($path, 0, strrpos($path, "/")) . "\">..</a><br />";
+        if (strpos($path, "/")) {
+            if(strpos($path, "/")) 
+                $url = "/lists/" . substr($path, 0, strrpos($path, "/"));
             else
-                $out .= "<a href=\"/lists/src\">..</a><br />";
+                $url = "/lists";
+            echo "<a href=\"" . $url . "\">..</a><br />";
+        }
+
+        $files = scandir(base_path() . "/query/" . $path);
         foreach ($files as $file)
         {
             if ($file != "." AND $file != "..") {
                 if (strpos($file, "."))
-                    $out .= "<a href=\"" . $path . "/" . substr($file, 0, strpos($file, ".")) . "\">" . $file . "</a><br />";
+                    $url = "/lists/" . $path . "/" . substr($file, 0, strpos($file, "."));
                 else
-                    $out .= "<a href=\"/lists/src/" . $path . "/" . $file . "\">" . $file . "</a><br />";
-                break;
+                    $url = "/lists/" . $path . "/" . $file;
+				echo "<a href=\"" . $url . "\">" . $file . "</a><br />";
             }
         }
-        echo $out;
     ?>
 
 @stop
