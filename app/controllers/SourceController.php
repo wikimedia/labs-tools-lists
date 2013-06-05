@@ -12,4 +12,11 @@ class SourceController extends BaseController {
         }
     }
 
+    public static function getDir($path)
+    {
+    	$elements = scandir(base_path() . "/" . $path);
+  		unset($elements[0]);
+  		unset($elements[1]);
+  		return $elements;
+    }
 }
