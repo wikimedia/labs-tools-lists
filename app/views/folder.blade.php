@@ -13,16 +13,13 @@
             echo "<a href=\"" . $url . "\">..</a><br />";
         }
 
-        $files = scandir(base_path() . "/query/" . $path);
-        foreach ($files as $file)
+        foreach (SourceController::getDir("query/" . $path) as $file)
         {
-            if ($file != "." AND $file != "..") {
-                if (strpos($file, "."))
-                    $url = "/lists/" . $path . "/" . substr($file, 0, strpos($file, "."));
-                else
-                    $url = "/lists/" . $path . "/" . $file;
-				echo "<a href=\"" . $url . "\">" . $file . "</a><br />";
-            }
+            if (strpos($file, "."))
+                $url = "/lists/" . $path . "/" . substr($file, 0, strpos($file, "."));
+            else
+                $url = "/lists/" . $path . "/" . $file;
+			echo "<a href=\"" . $url . "\">" . $file . "</a><br />";
         }
     ?>
 
