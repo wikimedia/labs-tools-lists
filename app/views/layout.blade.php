@@ -22,11 +22,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand {{{ Request::is('lists/') ? ' active' : '' }}}" href="/~fale">Lists</a>
+          <a class="brand" href="/lists">Lists</a>
           <div class="nav-collapse collapse">
-            <p class="navbar-text pull-right {{{ Request::is('/lists/src') ? ' active' : '' }}}">
-              <a href="/lists/src" class="navbar-link">Sources</a>
-            </p>
+            <ul class="nav">
+              @foreach (SourceController::getDir("query") as $file)
+                <li class="dropdown">
+                  <a href="/lists/{{$file}}">{{$file}}</a>
+                </li>
+              @endforeach
+            </ul>
           </div>
         </div>
       </div>
