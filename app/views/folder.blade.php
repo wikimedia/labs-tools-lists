@@ -3,15 +3,8 @@
 @section('title')Folder - {{$path}}@stop
 
 @section('content')
-    <h1>{{$path}}</h1>
+    <h1>{{SourceController::linkedPath($path)}}</h1>
     <?php
-        if (strpos($path, "/")) {
-            if(strpos($path, "/")) 
-                $url = "/lists/" . substr($path, 0, strrpos($path, "/"));
-            else
-                $url = "/lists";
-            echo "<a href=\"" . $url . "\">..</a><br />";
-        }
 
         foreach (SourceController::getDir("query/" . $path) as $file)
         {
