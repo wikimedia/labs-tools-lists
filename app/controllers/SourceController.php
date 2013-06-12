@@ -19,7 +19,7 @@ class SourceController extends BaseController {
     	$elements = scandir(base_path() . "/" . $path);
   		unset($elements[0]);
   		unset($elements[1]);
-  		return $elements;
+  		return array_values($elements);
     }
 
     public static function linkedPath($path)
