@@ -13,4 +13,13 @@
     ?>
 
     <h2>Output</h2>
+    <?php
+    	$outputs = SourceController::getDir("output/" . $path);
+    	$filename = $outputs[sizeof($outputs) - 1];
+    	
+	    $source = file_get_contents(base_path() . "/output/" . $file . "/" . $filename);
+    	$geshi = new GeSHi($source, 'sql');
+    	echo $geshi->parse_code();
+    ?>
+
 @stop
