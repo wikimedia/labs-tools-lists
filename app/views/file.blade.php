@@ -8,7 +8,7 @@
     <h2>Query</h2>
     <?php
 	    $source = file_get_contents(base_path() . "/query/" . $file . ".sql");
-    	$geshi = new GeSHi($source, 'sql');
+    	$geshi = new GeSHi(trim($source), 'sql');
     	echo $geshi->parse_code();
     ?>
 
@@ -18,7 +18,7 @@
     	$filename = $outputs[sizeof($outputs) - 1];
     	
 	    $source = file_get_contents(base_path() . "/output/" . $file . "/" . $filename);
-    	$geshi = new GeSHi($source, 'sql');
+    	$geshi = new GeSHi(trim($source), 'sql');
     	echo $geshi->parse_code();
     ?>
 
