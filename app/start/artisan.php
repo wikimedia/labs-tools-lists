@@ -12,3 +12,4 @@
 */
 
 Artisan::add(new Crontab);
+Artisan::add(new DailyCrontab);

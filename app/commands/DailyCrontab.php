@@ -4,21 +4,21 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class Crontab extends Command {
+class DailyCrontab extends Command {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'crontab:run';
+	protected $name = 'crontab:daily';
 
 	/**
 	 * The console command description.
 	 *
 	 * @var string
 	 */
-	protected $description = 'Crontab of the project.';
+	protected $description = 'Daily crontab of the project.';
 
 	/**
 	 * Create a new command instance.
@@ -37,7 +37,7 @@ class Crontab extends Command {
 	 */
 	public function fire()
 	{
-		$this->info($this->argument('frequency'));
+		//
 	}
 
 	/**
@@ -48,7 +48,7 @@ class Crontab extends Command {
 	protected function getArguments()
 	{
 		return array(
-			array('frequency', InputArgument::REQUIRED, 'Run frequency: daily, weekly'),
+			//array('example', InputArgument::REQUIRED, 'An example argument.'),
 		);
 	}
 
