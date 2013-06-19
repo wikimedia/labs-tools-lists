@@ -1,5 +1,7 @@
 <?php
 
+$config = parse_ini_file(base_path() . "/../replica.my.cnf");
+
 return array(
 
 	/*
@@ -54,10 +56,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'database',
-			'username'  => 'root',
-			'password'  => '',
+			'host'      => 'tools-db',
+			'database'  => $config['user'] . '_db',
+			'username'  => $config['user'],
+			'password'  => $config['password'],
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
