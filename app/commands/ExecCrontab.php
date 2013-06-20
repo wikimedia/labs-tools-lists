@@ -37,7 +37,7 @@ class ExecCrontab extends Command {
 	 */
 	public function fire()
 	{
-		//
+		$this->info($this->argument('query'));
 	}
 
 	/**
