@@ -15,3 +15,4 @@ Artisan::add(new Crontab);
 Artisan::add(new DailyCrontab);
 Artisan::add(new WeeklyCrontab);
 Artisan::add(new ExecCrontab);
+Artisan::add(new SyncCrontab);
