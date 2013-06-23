@@ -37,7 +37,32 @@ class SyncCrontab extends Command {
 	 */
 	public function fire()
 	{
-		//
+		$directory = base_path() . "/query/";
+		$it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
+		$files = array();
+		while($it->valid()) {
+		    if (!$it->isDot() AND preg_match("/.*\.cnf/i", $it->getSubPathName()))
+		        $files[] = substr($it->getSubPathName(), 0, -4);
+		    $it->next();
+		}
+
+		foreach ($files as $file) {
+			$filepath = base_path() . "/query/" . $file;
+			$query = file_get_contents($filepath . ".sql");
+			$config = parse_ini_file($filepath . ".cnf");
+			if (!array_key_exists('id', $config)) {
+				$obj = Query::create(array('name' => $file, 'frequency' => $config['frequency']));
+				$id = $obj->id;
+				if (!file_put_contents($filepath . ".cnf", "\nid = " . $id, FILE_APPEND))
+	 		   		$this->error('Impossible to update the cnf file.');
+			} else {
+				$id = $config['id'];
+				if (Query::find($id)->pluck('frequency') != $config['frequency']) {
+					Query::find($id)->update(array('frequency' => $config['frequency']));
+				}
+			}
+			$this->info($id);
+		}
 	}
 
 	/**
