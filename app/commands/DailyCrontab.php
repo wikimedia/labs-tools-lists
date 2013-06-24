@@ -18,7 +18,7 @@ class DailyCrontab extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = 'Daily crontab of the project.';
+	protected $description = 'Daily crontab of the project';
 
 	/**
 	 * Create a new command instance.
@@ -37,7 +37,10 @@ class DailyCrontab extends Command {
 	 */
 	public function fire()
 	{
-		//
+		$queries = Query::where('frequency', 'daily')->get();
+		foreach ($queries as $query) {
+			shell_exec('php artisan crontab:exec ' . $query['name']);
+		}
 	}
 
 	/**
@@ -47,9 +50,7 @@ class DailyCrontab extends Command {
 	 */
 	protected function getArguments()
 	{
-		return array(
-			//array('example', InputArgument::REQUIRED, 'An example argument.'),
-		);
+		return array();
 	}
 
 	/**
@@ -59,9 +60,7 @@ class DailyCrontab extends Command {
 	 */
 	protected function getOptions()
 	{
-		return array(
-			//array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
-		);
+		return array();
 	}
 
 }
