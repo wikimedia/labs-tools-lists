@@ -18,7 +18,7 @@ class ExecCrontab extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = 'Perform a crontabbed query.';
+	protected $description = 'Perform a crontabbed query';
 
 	/**
 	 * Create a new command instance.
@@ -37,7 +37,29 @@ class ExecCrontab extends Command {
 	 */
 	public function fire()
 	{
-		$this->info($this->argument('query'));
+		$file = $this->argument('query');
+		$filepath = base_path() . "/query/" . $file;
+		$query = file_get_contents($filepath . ".sql");
+		$config = parse_ini_file($filepath . ".cnf");
+		if (is_object(Query::find($config['id'])))
+			$db = Query::find($config['id'])->get();
+		else {
+			$this->error('Query not present in db');
+			return 1;
+		}
+		if (!mkdir(base_path() . "/output/" . $file, 0777, TRUE)) {
+			$this->error('Impossible to create the output folder');
+			return 1;
+		}
+		$date = date('Y-m-d H:i:s');
+		$outpath = base_path() . "/output/" . $file . "/" . Execution::getArguments($date);
+		$c = "mysql --defaults-file=~/replica.my.cnf -h {$config['project']}.labsdb";
+		$c.= "< {$filepath}.sql > {$outpath}.out";
+		$time = -microtime();
+		$output = shell_exec($c);
+		$time += microtime();
+		$lines = shell_exec('wc -l {$outpath}.out');
+		Execution::create(array('query_id' => $confg['id'], 'time' => $date, 'duration' => $time, 'results' => $lines));
 	}
 
 	/**
@@ -48,7 +70,7 @@ class ExecCrontab extends Command {
 	protected function getArguments()
 	{
 		return array(
-			array('query', InputArgument::REQUIRED, 'Query full path.'),
+			array('query', InputArgument::REQUIRED, 'Query full path'),
 		);
 	}
 
@@ -59,9 +81,7 @@ class ExecCrontab extends Command {
 	 */
 	protected function getOptions()
 	{
-		return array(
-			//array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
-		);
+		return array();
 	}
 
 }
