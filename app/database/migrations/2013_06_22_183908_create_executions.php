@@ -16,7 +16,7 @@ class CreateExecutions extends Migration {
     		$table->increments('id');
     		$table->integer('query_id')->unsigned();
     		$table->timestamp('time');
-    		$table->time('duration');
+    		$table->integer('duration');
     		$table->integer('results');
     		$table->foreign('query_id')->references('id')->on('queries');
 		});
