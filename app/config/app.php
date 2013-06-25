@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://labs.lo/lists',
+	'url' => 'http://tools.wmflabs.org/lists',
 
 	/*
 	|--------------------------------------------------------------------------
