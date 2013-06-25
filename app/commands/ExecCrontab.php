@@ -56,9 +56,10 @@ class ExecCrontab extends Command {
 		$outpath = base_path() . "/output/" . $file . "/" . Execution::getSafeDate($date);
 		$c = "mysql --defaults-file=~/replica.my.cnf -h {$config['project']}.labsdb -BN ";
 		$c.= "< {$filepath}.sql > {$outpath}.out";
-		$time = -microtime();
+		$before = microtime();
 		$output = shell_exec($c);
-		$time += microtime();
+		$after = microtime();
+		$time = ($after - $before) * 1000;
 		$lines = explode(' ',trim(shell_exec("wc -l {$outpath}.out")));
 		Execution::create(array('query_id' => $config['id'], 'time' => $date, 'duration' => $time, 'results' => $lines[0]));
 		Query::find($config['id'])->increment('times', 1, array('last_execution_at' => $date));
