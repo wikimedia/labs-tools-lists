@@ -12,7 +12,7 @@
         $geshi = new GeSHi(trim($source), 'sql');
 
         // Get the output
-        $filename = Execution::getSafeDate($object->last_execution_at) . ".out";
+        $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
         $output = file_get_contents(base_path() . "/output/" . $file . "/" . $filename);
 
         // Get the config
