@@ -59,7 +59,7 @@ class ExecCrontab extends Command {
 		$time = -microtime();
 		$output = shell_exec($c);
 		$time += microtime();
-		$lines = explode(' ',trim(shell_exec('wc -l {$outpath}.out')));
+		$lines = explode(' ',trim(shell_exec("wc -l {$outpath}.out")));
 		Execution::create(array('query_id' => $config['id'], 'time' => $date, 'duration' => $time, 'results' => $lines[0]));
 	}
 
