@@ -4,23 +4,29 @@
 
 @section('content')
     <?php
-        $object = Query::where('name', $path)->get()->first();
+        // Retrive object from DB
+        $db = Query::where('name', $path)->get()->first();
+
+        // Get the Query source
+        $source = file_get_contents(base_path() . "/query/" . $file . ".sql");
+        $geshi = new GeSHi(trim($source), 'sql');
+
+        // Get the output
+        $filename = Execution::getSafeDate($object->last_execution_at) . ".out";
+        $output = file_get_contents(base_path() . "/output/" . $file . "/" . $filename);
+
+        // Get the config
+        $config = parse_ini_file(base_path() . "/query/" . $file . ".cnf");
     ?>
     <h1>{{SourceController::linkedPath($path)}}</h1>
 
-    <h2>Query</h2>
-    <?php
-	    $source = file_get_contents(base_path() . "/query/" . $file . ".sql");
-    	$geshi = new GeSHi(trim($source), 'sql');
-    	echo $geshi->parse_code();
-    ?>
+    <h2>Output ({{$db->last_execution_results}})</h2>
+    <pre class="txt" style="font-family:monospace;">{{SourceController::cleanWikiCode(trim($source),$config['project'])}}</pre>
 
-    <h2>Output ({{$object->last_execution_results}})</h2>
-    <?php
-    	$outputs = SourceController::getDir("output/" . $path);
-    	$filename = Execution::getSafeDate($object->last_execution_at) . ".out";
-	    $source = file_get_contents(base_path() . "/output/" . $file . "/" . $filename);
-    ?>
-    <pre class="sql" style="font-family:monospace;">{{SourceController::cleanWikiCode(trim($source),'itwiki')}}</pre>
+    <h2>Information</h2>
+    Last run: {{$db->last_execution_at}}<br />
+
+    <h2>Query</h2>
+    {{$geshi->parse_code()}}
 
 @stop
