@@ -17,6 +17,7 @@ class CreateQueries extends Migration {
     		$table->string('name');
     		$table->string('frequency');
     		$table->timestamp('last_execution_at');
+    		$table->integer('last_execution_results');
     		$table->integer('times');
     		$table->timestamps();
 		});

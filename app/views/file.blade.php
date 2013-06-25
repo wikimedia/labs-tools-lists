@@ -3,6 +3,9 @@
 @section('title')File - {{$file}}@stop
 
 @section('content')
+    <?php
+        $object = Query::where('name', $path)->get()->first();
+    ?>
     <h1>{{SourceController::linkedPath($path)}}</h1>
 
     <h2>Query</h2>
@@ -12,7 +15,7 @@
     	echo $geshi->parse_code();
     ?>
 
-    <h2>Output</h2>
+    <h2>Output ({{$object->last_execution_results}})</h2>
     <?php
     	$outputs = SourceController::getDir("output/" . $path);
     	$filename = $outputs[sizeof($outputs) - 1];
