@@ -54,6 +54,14 @@ class SourceController extends BaseController {
 
     	$out .= $array[$lastElementKey];
     	return $out;
+    }
 
+    public static function cleanWikiCode($code)
+    {       
+        $code = preg_replace('/\[\[(.*)\]\]/i', '<a href="http://it.wikipedia.org/wiki/${1}">[[${0}]]</a>', $code);
+        $code = preg_replace_callback('/\[\[(.*)\]\]/i', function ($matches) {
+            return str_replace('_', ' ', $matches[1]);
+        }, $code);
+        return $code;
     }
 }
