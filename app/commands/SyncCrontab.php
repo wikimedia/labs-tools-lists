@@ -50,18 +50,11 @@ class SyncCrontab extends Command {
 			$filepath = base_path() . "/query/" . $file;
 			$query = file_get_contents($filepath . ".sql");
 			$config = parse_ini_file($filepath . ".cnf");
-			if (!array_key_exists('id', $config)) {
+			if (!Query::where('name', $file)->count())
 				$obj = Query::create(array('name' => $file, 'frequency' => $config['frequency']));
-				$id = $obj->id;
-				if (!file_put_contents($filepath . ".cnf", "\nid = " . $id, FILE_APPEND))
-	 		   		$this->error('Impossible to update the cnf file.');
-			} else {
-				$id = $config['id'];
-				if (Query::find($id)->pluck('frequency') != $config['frequency']) {
+			else
+				if (Query::find($id)->pluck('frequency') != $config['frequency'])
 					Query::find($id)->update(array('frequency' => $config['frequency']));
-				}
-			}
-			$this->info($id);
 		}
 	}
 

@@ -41,8 +41,8 @@ class ExecCrontab extends Command {
 		$filepath = base_path() . "/query/" . $file;
 		$query = file_get_contents($filepath . ".sql");
 		$config = parse_ini_file($filepath . ".cnf");
-		if (is_object(Query::find($config['id'])))
-			$db = Query::find($config['id'])->get();
+		if (is_object(Query::where('name', $file)->first()))
+			$db = Query::where('name', $file)->get()->first();
 		else {
 			$this->error('Query not present in db');
 			return 1;
@@ -61,9 +61,9 @@ class ExecCrontab extends Command {
 		$after = microtime();
 		$time = ($after - $before) * 1000;
 		$lines = explode(' ',trim(shell_exec("wc -l {$outpath}.out")));
-		Execution::create(array('query_id' => $config['id'], 'time' => $date, 'duration' => $time, 'results' => $lines[0]));
-		Query::find($config['id'])->increment('times', 1, array('last_execution_at' => $date, 'last_execution_results' => $lines[0]));
-		Query::find($config['id'])->update(array('last_execution_at' => $date, 'last_execution_results' => $lines[0])); //Workaround for Laravel bug #1745
+		Execution::create(array('query_id' => $db->id, 'time' => $date, 'duration' => $time, 'results' => $lines[0]));
+		Query::find($db->id)->increment('times', 1, array('last_execution_at' => $date, 'last_execution_results' => $lines[0]));
+		Query::find($db->id)->update(array('last_execution_at' => $date, 'last_execution_results' => $lines[0])); //Workaround for Laravel bug #1745
 	}
 
 	/**
