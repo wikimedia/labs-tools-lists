@@ -47,10 +47,11 @@ class ExecCrontab extends Command {
 			$this->error('Query not present in db');
 			return 1;
 		}
-		if (!mkdir(base_path() . "/output/" . $file, 0777, TRUE)) {
-			$this->error('Impossible to create the output folder');
-			return 1;
-		}
+		if (!is_dir(base_path() . "/output/" . $file))
+			if (!mkdir(base_path() . "/output/" . $file, 0777, TRUE)) {
+				$this->error('Impossible to create the output folder');
+				return 1;
+			}
 		$date = date('Y-m-d H:i:s');
 		$outpath = base_path() . "/output/" . $file . "/" . Execution::getArguments($date);
 		$c = "mysql --defaults-file=~/replica.my.cnf -h {$config['project']}.labsdb";
