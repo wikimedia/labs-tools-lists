@@ -17,8 +17,7 @@
 
     <h2>Output ({{$object->last_execution_results}})</h2>
     <?php
-    	$outputs = SourceController::getDir("output/" . $path);
-    	$filename = $outputs[sizeof($outputs) - 1];
+    	$filename = Execution::getSafeDate($object->last_execution_at) . ".out";
     	
 	    $source = file_get_contents(base_path() . "/output/" . $file . "/" . $filename);
     	$geshi = new GeSHi(trim($source), 'sql');
