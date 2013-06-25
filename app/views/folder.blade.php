@@ -6,7 +6,7 @@
     <h1>{{SourceController::linkedPath($path)}}</h1>
     <?php
 
-        foreach (SourceController::getDir("query/" . $path) as $file)
+        foreach (SourceController::getDir("query/" . $path, array('sql')) as $file)
         {
             if (strpos($file, "."))
                 $url = "/lists/" . $path . "/" . substr($file, 0, strpos($file, "."));
