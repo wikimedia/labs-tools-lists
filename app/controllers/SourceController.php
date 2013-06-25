@@ -56,9 +56,10 @@ class SourceController extends BaseController {
     	return $out;
     }
 
-    public static function cleanWikiCode($code)
-    {       
-        $code = preg_replace('/\[\[(.*)\]\]/i', '<a href="http://it.wikipedia.org/wiki/${1}">[[${0}]]</a>', $code);
+    public static function cleanWikiCode($code, $prj)
+    {
+        $replace = '<a href="http://' . Config::get('project.' . $prj) . '/wiki/${1}">[[${0}]]</a>';
+        $code = preg_replace('/\[\[(.*)\]\]/i', , $code);
         $code = preg_replace_callback('/\[\[(.*)\]\]/i', function ($matches) {
             return str_replace('_', ' ', $matches[1]);
         }, $code);
