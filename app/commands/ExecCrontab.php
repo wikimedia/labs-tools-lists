@@ -54,7 +54,7 @@ class ExecCrontab extends Command {
 			}
 		$date = date('Y-m-d H:i:s');
 		$outpath = base_path() . "/output/" . $file . "/" . Execution::getSafeDate($date);
-		$c = "mysql --defaults-file=~/replica.my.cnf -h {$config['project']}.labsdb";
+		$c = "mysql --defaults-file=~/replica.my.cnf -h {$config['project']}.labsdb -BN ";
 		$c.= "< {$filepath}.sql > {$outpath}.out";
 		$time = -microtime();
 		$output = shell_exec($c);
