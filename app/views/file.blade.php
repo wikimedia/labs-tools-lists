@@ -21,7 +21,7 @@
     <h1>{{SourceController::linkedPath($path)}}</h1>
 
     <h2>Output ({{$db->last_execution_results}})</h2>
-    <pre class="txt" style="font-family:monospace;">{{SourceController::cleanWikiCode(trim($source),$config['project'])}}</pre>
+    <pre class="txt" style="font-family:monospace;">{{SourceController::cleanWikiCode(trim($output),$config['project'])}}</pre>
 
     <h2>Information</h2>
     Last run: {{$db->last_execution_at}}<br />
