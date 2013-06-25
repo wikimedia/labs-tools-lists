@@ -23,6 +23,4 @@
     ?>
     <pre class="sql" style="font-family:monospace;">{{SourceController::cleanWikiCode(trim($source))}}</pre>
 
-    ?>
-
 @stop
