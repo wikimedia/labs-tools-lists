@@ -16,6 +16,8 @@ class SourceController extends BaseController {
 
     public static function getDir($path)
     {
+        if (!is_dir(base_path() . "/" . $path))
+            return array();
     	$elements = scandir(base_path() . "/" . $path);
   		unset($elements[0]);
   		unset($elements[1]);
