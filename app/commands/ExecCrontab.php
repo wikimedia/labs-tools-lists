@@ -62,7 +62,7 @@ class ExecCrontab extends Command {
 		$time = ($after - $before) * 1000;
 		$lines = explode(' ',trim(shell_exec("wc -l {$outpath}.out")));
 		Execution::create(array('query_id' => $config['id'], 'time' => $date, 'duration' => $time, 'results' => $lines[0]));
-		Query::find($config['id'])->increment('times', 1, array('last_execution_at' => $date));
+		Query::find($config['id'])->increment('times', 1, array('last_execution_at' => $date, 'last_execution_results' => $lines[0]));
 		Query::find($config['id'])->update(array('last_execution_at' => $date, 'last_execution_results' => $lines[0])); //Workaround for Laravel bug #1745
 	}
 
