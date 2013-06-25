@@ -53,14 +53,14 @@ class ExecCrontab extends Command {
 				return 1;
 			}
 		$date = date('Y-m-d H:i:s');
-		$outpath = base_path() . "/output/" . $file . "/" . Execution::getArguments($date);
+		$outpath = base_path() . "/output/" . $file . "/" . Execution::getSafeDate($date);
 		$c = "mysql --defaults-file=~/replica.my.cnf -h {$config['project']}.labsdb";
 		$c.= "< {$filepath}.sql > {$outpath}.out";
 		$time = -microtime();
 		$output = shell_exec($c);
 		$time += microtime();
 		$lines = shell_exec('wc -l {$outpath}.out');
-		Execution::create(array('query_id' => $confg['id'], 'time' => $date, 'duration' => $time, 'results' => $lines));
+		Execution::create(array('query_id' => $config['id'], 'time' => $date, 'duration' => $time, 'results' => $lines));
 	}
 
 	/**
