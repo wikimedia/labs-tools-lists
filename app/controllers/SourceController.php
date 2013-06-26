@@ -47,12 +47,13 @@ class SourceController extends BaseController {
     	foreach ($array as $k => $v) {
     		if ($k < $lastElementKey) {
     			$url = $last . "/" . $v;
-	    		$out .= "<a href=\"" . $url . "\">" . $v . "</a>/";
+                $cv = str_replace('_', ' ', $v);
+	    		$out .= "<a href=\"" . $url . "\">" . $cv . "</a>/";
     			$last = $url;
     		}
     	}
 
-    	$out .= $array[$lastElementKey];
+    	$out .= str_replace('_', ' ', $array[$lastElementKey]);
     	return $out;
     }
 
