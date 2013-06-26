@@ -1,7 +1,18 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
+	"name": "wmflab/lists",
+	"description": "The lists tool",
+	"keywords": ["lists", "wikimedia", "wikipedia", "wmflab", "laravel"],
+	"license": "AGPL-3.0",
+	"type": "project",
+	"homepage": "http://tools.wmflabs.org/lists",
+	"authors": [
+		{
+			"name": "Fabio Alessandro Locati",
+			"email": "fabiolocati@gmail.com",
+			"homepage": "http://fabiolocati.com",
+			"role": "Developer"
+		}
+	],
 	"require": {
 		"laravel/framework": "4.0.*",
 		"easybook/geshi": "dev-master"
