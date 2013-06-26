@@ -50,11 +50,15 @@ class SyncCrontab extends Command {
 			$filepath = base_path() . "/query/" . $file;
 			$query = file_get_contents($filepath . ".sql");
 			$config = parse_ini_file($filepath . ".cnf");
-			if (!Query::where('name', $file)->count())
-				$obj = Query::create(array('name' => $file, 'frequency' => $config['frequency']));
+			if ($config['frequency'] == "default")
+				$frequency = "weekly";
 			else
-				if (Query::where('name', $file)->get()->first()->pluck('frequency') != $config['frequency'])
-					Query::where('name', $file)->get()->first()->update(array('frequency' => $config['frequency']));
+				$frequency = $config['frequency'];
+			if (!Query::where('name', $file)->count())
+				$obj = Query::create(array('name' => $file, 'frequency' => $frequency));
+			else
+				if (Query::where('name', $file)->get()->first()->pluck('frequency') != $frequency)
+					Query::where('name', $file)->get()->first()->update(array('frequency' => $frequency));
 		}
 	}
 
