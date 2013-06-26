@@ -8,11 +8,14 @@
 
         foreach (SourceController::getDir("query/" . $path, array('sql')) as $file)
         {
-            if (strpos($file, "."))
+            if (strpos($file, ".")) {
                 $url = "/lists/" . $path . "/" . substr($file, 0, strpos($file, "."));
-            else
+                $label = str_replace('_', ' ', substr($file, 0, strpos($file, ".")));
+            } else {
                 $url = "/lists/" . $path . "/" . $file;
-			echo "<a href=\"" . $url . "\">" . $file . "</a><br />";
+                $label = str_replace('_', ' ', $file);
+            }
+			echo "<a href=\"" . $url . "\">" . $label . "</a><br />";
         }
     ?>
 
