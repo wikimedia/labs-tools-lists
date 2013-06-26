@@ -53,8 +53,8 @@ class SyncCrontab extends Command {
 			if (!Query::where('name', $file)->count())
 				$obj = Query::create(array('name' => $file, 'frequency' => $config['frequency']));
 			else
-				if (Query::find($id)->pluck('frequency') != $config['frequency'])
-					Query::find($id)->update(array('frequency' => $config['frequency']));
+				if (Query::where('name', $file)->get()->first()->pluck('frequency') != $config['frequency'])
+					Query::where('name', $file)->get()->first()->update(array('frequency' => $config['frequency']));
 		}
 	}
 
