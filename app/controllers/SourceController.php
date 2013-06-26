@@ -30,7 +30,7 @@ class SourceController extends BaseController {
                 $rule = "/.*\.[" . implode('|', $exts) ."]/i";
             $out = array();
             foreach ($elements as $element) {
-                if (preg_match($rule, $element))
+                if (preg_match($rule, $element) OR is_dir(base_path() . "/" . $path . "/" . $element))
                     $out[] = $element;
             }
         return $out;
