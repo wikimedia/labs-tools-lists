@@ -25,6 +25,19 @@
 
     <h2>Information</h2>
     Last run: {{$db->last_execution_at}}<br />
+    @if ($config['author'] AND $config['author'] != 'unknown')
+        Author: {{$config['author']}}<br />
+    @endif
+    @if ($config['license'])
+        License: {{$config['license']}}<br />
+    @endif
+    @if ($config['frequeny'])
+        @if ($config['frequency'] == 'default')
+            Frequency: daily<br />
+        @elseif
+            Frequency: {{$config['frequency']}}<br />
+        @endif
+    @endif
 
     <h2>Query</h2>
     {{$geshi->parse_code()}}
