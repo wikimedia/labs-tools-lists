@@ -17,6 +17,9 @@
 
         // Get the config
         $config = parse_ini_file(base_path() . "/query/" . $file . ".cnf");
+
+        // Get average run
+        $runtime = DB::table('executions')->where('query_id', $db->id)->avg('duration');
     ?>
     <h1>{{SourceController::linkedPath($path)}}</h1>
 
@@ -36,6 +39,12 @@
     @elseif
         Frequency: {{$config['frequency']}}<br />
     @endif
+    @if ($db->times != 1)
+        Query ran {{$db->times}} times taking averagely {{$runtime / 1000}} seconds<br />
+    @elseif
+        Query ran {{$db->times}} time taking {{$runtime / 1000}} seconds<br />
+    @elseif
+
 
     <h2>Query</h2>
     {{$geshi->parse_code()}}
