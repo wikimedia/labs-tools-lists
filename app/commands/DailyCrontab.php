@@ -39,7 +39,7 @@ class DailyCrontab extends Command {
 	{
 		$queries = Query::where('frequency', 'daily')->get();
 		foreach ($queries as $query) {
-			shell_exec('php artisan crontab:exec ' . $query['name']);
+			shell_exec('php ' . base_path() . '/artisan crontab:exec ' . $query['name']);
 		}
 	}
 
