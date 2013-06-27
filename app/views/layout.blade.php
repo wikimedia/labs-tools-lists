@@ -24,6 +24,9 @@
           </button>
           <a class="brand" href="/lists">Lists</a>
           <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              <a href="/lists/docs" class="navbar-link">Docs</a>
+            </p>
             <ul class="nav">
               @foreach (SourceController::getDir("query") as $file)
                 <li class="dropdown">
