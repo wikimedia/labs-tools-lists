@@ -31,12 +31,10 @@
     @if ($config['license'])
         License: {{$config['license']}}<br />
     @endif
-    @if ($config['frequeny'])
-        @if ($config['frequency'] == 'default')
-            Frequency: daily<br />
-        @elseif
-            Frequency: {{$config['frequency']}}<br />
-        @endif
+    @if ($config['frequency'] == 'default')
+        Frequency: daily<br />
+    @elseif
+        Frequency: {{$config['frequency']}}<br />
     @endif
 
     <h2>Query</h2>
