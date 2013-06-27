@@ -43,7 +43,7 @@
         Query ran {{$db->times}} times taking averagely {{$runtime / 1000}} seconds<br />
     @elseif
         Query ran {{$db->times}} time taking {{$runtime / 1000}} seconds<br />
-    @elseif
+    @endif
 
 
     <h2>Query</h2>
