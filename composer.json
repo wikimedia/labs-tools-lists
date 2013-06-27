@@ -15,7 +15,8 @@
 	],
 	"require": {
 		"laravel/framework": "4.0.*",
-		"easybook/geshi": "dev-master"
+		"easybook/geshi": "dev-master",
+		"dflydev/markdown": "v1.0.2"
 	},
 	"autoload": {
 		"classmap": [
