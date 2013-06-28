@@ -40,9 +40,9 @@
         Frequency: {{$config['frequency']}}<br />
     @endif
     @if ($db->times != 1)
-        Query ran {{$db->times}} times taking averagely {{$runtime / 1000}} seconds<br />
+        Query ran {{$db->times}} times taking averagely {{round($runtime / 1000, 3)}} seconds<br />
     @elseif
-        Query ran {{$db->times}} time taking {{$runtime / 1000}} seconds<br />
+        Query ran {{$db->times}} time taking {{round($runtime / 1000, 3)}} seconds<br />
     @endif
 
 
