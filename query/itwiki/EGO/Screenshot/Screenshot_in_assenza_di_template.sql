@@ -7,7 +7,8 @@ SELECT DISTINCT CONCAT('* [[', page.page_title, ']]') AS "Articles"
     'Film', 'StagioniTV', 'Fumetto_e_animazione', 'Episodio_SerieTV', 'ProgrammaTV', 
     'FictionTV', 'Personaggio', 'Infobox_personaggio_fittizio', 'Digimon_Infobox', 'Album', 
     'Gamebox', 'Sistema_operativo', 'Software', 'Programma', 'Tour_musicale', 'ReteTV',
-    'Personaggi_di_BLEACH', 'Personaggi_Street_Fighter', 'Kenshin'
+    'Personaggi_di_BLEACH', 'Personaggi_Street_Fighter', 'Kenshin', 'Festival_musicale',
+    'Serie_animate_Disney', 'Monty_Python'
   )
   LEFT JOIN pagelinks ON pl_namespace=page.page_namespace AND pl_title=page.page_title AND pl_from=(
     SELECT page_id
