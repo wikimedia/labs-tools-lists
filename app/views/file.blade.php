@@ -16,7 +16,7 @@
     @if (array_key_exists('license',$data))
         License: {{$data['license']}}<br />
     @endif
-    @if (array_key_exists('frequency',$data)
+    @if (array_key_exists('frequency',$data))
         Frequency: {{$data['frequency']}}<br />
     @endif
     @if ($data['run'] != 1)
