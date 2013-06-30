@@ -78,3 +78,11 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/*
+| 404 Handler
+*/
+App::missing(function($exception)
+{
+    return Response::view('errors.missing', array(), 404);
+});

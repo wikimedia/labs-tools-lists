@@ -6,10 +6,10 @@ class SourceController extends BaseController {
     {
         if(is_dir(base_path() . "/query/" . $path)) // Check if it's a folder
             return $this->showFolder($path);
-        else
-        {
+        elseif (file_exists(base_path() . "/query/" . $path . ".cnf"))
             return $this->showFile($path, $path);
-        }
+        else
+            App::abort(404);
     }
 
     public function showFile($file)
