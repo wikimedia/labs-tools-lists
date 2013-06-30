@@ -51,15 +51,27 @@ class SyncCrontab extends Command {
 			$filepath = base_path() . "/query/" . $file;
 			$query = file_get_contents($filepath . ".sql");
 			$config = parse_ini_file($filepath . ".cnf");
+			$fullconfig = parse_ini_file($filepath . ".cnf", TRUE);
+			if (array_key_exists('query', $fullconfig)
+				OR array_key_exists('mysql', $fullconfig))
+				$kind = 'mysql';
+			if (array_key_exists('python', $fullconfig))
+				$kind = 'python';
 			if ($config['frequency'] == "default")
 				$frequency = "daily";
 			else
 				$frequency = $config['frequency'];
 			if (!DB::table('queries')->where('name', $file)->count())
-				$obj = Query::create(array('name' => $file, 'frequency' => $frequency));
+				$obj = Query::create(array(
+					'name' => $file,
+					'frequency' => $frequency,
+					'kind' => $kind
+				));
 			else
 				if (DB::table('queries')->where('name', $file)->pluck('frequency') != $frequency)
 					DB::table('queries')->where('name', $file)->update(array('frequency' => $frequency));
+				if (DB::table('queries')->where('name', $file)->pluck('kind') != $kind)
+					DB::table('queries')->where('name', $file)->update(array('kind' => $kind));
 		}
 	}
 
