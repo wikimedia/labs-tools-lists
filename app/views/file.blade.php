@@ -1,12 +1,12 @@
 @extends('layout')
 
-@section('title')File - {{$file}}@stop
+@section('title')File - {{$data['file']}}@stop
 
 @section('content')
     <h1>{{$data['title']}}</h1>
 
     <h2>Output ({{$data['results']}})</h2>
-    <pre class="txt" style="font-family:monospace;">{{data['output'])}}</pre>
+    <pre class="txt" style="font-family:monospace;">{{$data['output']}}</pre>
 
     <h2>Information</h2>
     Last run: {{$data['last_execution_at']}}<br />
@@ -19,7 +19,7 @@
     @if ($data['frequency'])
         Frequency: {{$data['frequency']}}<br />
     @endif
-    @if ($db->times != 1)
+    @if ($data['run'] != 1)
         Query run {{$data['run']}} times taking averagely {{$data['runtime']}} seconds<br />
     @elseif
         Query run {{$data['run']}} time taking {{$data['runtime']}} seconds<br />

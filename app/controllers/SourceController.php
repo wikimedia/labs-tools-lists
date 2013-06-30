@@ -31,7 +31,8 @@ class SourceController extends BaseController {
         // Get average run
         $runtime = DB::table('executions')->where('query_id', $db->id)->avg('duration');
 
-        $data['title'] = SourceController::linkedPath($path);
+        $data['file'] = $file;
+        $data['title'] = SourceController::linkedPath($file);
         $data['results'] = $db->last_execution_results;
         $data['output'] = SourceController::cleanWikiCode(trim($output),$config['project']);
         $data['last_execution_at'] = $db->last_execution_at;
