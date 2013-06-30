@@ -125,15 +125,14 @@ class SourceController extends BaseController {
         // Retrive object from DB
         if (!DB::table('queries')->where('name', $path)->count())
             App::abort(404);
-        
-        $db = Query::where('name', $path)->get()->first();
 
-        // Get the output
+        $db = Query::where('name', $path)->get()->first();
         $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
-        if (file_exists(base_path() . "/output/" . $path . "/" . $filename))
-            echo file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
-        else
+
+        if (!file_exists(base_path() . "/output/" . $path . "/" . $filename))
             App::abort(404);
+
+        echo file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
     }
 
     public static function getDir($path, $exts = null)
