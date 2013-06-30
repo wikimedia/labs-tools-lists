@@ -123,6 +123,9 @@ class SourceController extends BaseController {
     public function showRaw($path)
     {
         // Retrive object from DB
+        if (!DB::table('queries')->where('name', $path)->count())
+            App::abort(404);
+        
         $db = Query::where('name', $path)->get()->first();
 
         // Get the output
@@ -130,7 +133,7 @@ class SourceController extends BaseController {
         if (file_exists(base_path() . "/output/" . $path . "/" . $filename))
             echo file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
         else
-            return '404';
+            App::abort(404);
     }
 
     public static function getDir($path, $exts = null)
