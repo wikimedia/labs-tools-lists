@@ -7,32 +7,32 @@ class SourceController extends BaseController {
         if(is_dir(base_path() . "/query/" . $path)) // Check if it's a folder
             return $this->showFolder($path);
         elseif (file_exists(base_path() . "/query/" . $path . ".cnf"))
-            return $this->showFile($path, $path);
+            return $this->showFile($path);
         else
             App::abort(404);
     }
 
-    public function showFile($file)
+    public function showFile($path)
     {
         // Retrive object from DB
-        $db = Query::where('name', $file)->get()->first();
+        $db = Query::where('name', $path)->get()->first();
 
         // Get the Query source
-        $source = file_get_contents(base_path() . "/query/" . $file . ".sql");
+        $source = file_get_contents(base_path() . "/query/" . $path . ".sql");
         $geshi = new GeSHi(trim($source), 'sql');
 
         // Get the output
         $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
-        $output = file_get_contents(base_path() . "/output/" . $file . "/" . $filename);
+        $output = file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
 
         // Get the config
-        $config = parse_ini_file(base_path() . "/query/" . $file . ".cnf");
+        $config = parse_ini_file(base_path() . "/query/" . $path . ".cnf");
 
         // Get average run
         $runtime = DB::table('executions')->where('query_id', $db->id)->avg('duration');
 
-        $data['file'] = $file;
-        $data['title'] = SourceController::linkedPath($file);
+        $data['file'] = $path;
+        $data['title'] = SourceController::linkedPath($path);
         $data['results'] = $db->last_execution_results;
         $data['output'] = SourceController::cleanWikiCode(trim($output),$config['project']);
         $data['last_execution_at'] = $db->last_execution_at;
