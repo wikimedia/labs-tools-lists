@@ -29,6 +29,7 @@
         <h2>Query</h2>
     @elseif
         <h2>Code</h2>
+    @endif
     {{$data['query']}}
 
 @stop
