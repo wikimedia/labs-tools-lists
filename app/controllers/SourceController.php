@@ -4,7 +4,7 @@ class SourceController extends BaseController {
 
     public function show($path = null)
     {
-        if(is_dir(base_path() . "/query/" . $path)) // Check if it's a folder
+        if (is_dir(base_path() . "/query/" . $path)) // Check if it's a folder
             return $this->showFolder($path);
         elseif (file_exists(base_path() . "/query/" . $path . ".cnf"))
             return $this->showFile($path);
@@ -13,6 +13,16 @@ class SourceController extends BaseController {
     }
 
     public function showFile($path)
+    {
+        if (file_exists(base_path() . "/query/" . $path . ".sql"))
+            return $this->showMysql($path);
+        elseif (file_exists(base_path() . "/query/" . $path . ".py"))
+            return $this->showPython($path);
+        else
+            App::abort(404);
+    }
+
+    public function showMysql($path)
     {
         // Retrive object from DB
         $db = Query::where('name', $path)->get()->first();
@@ -49,7 +59,47 @@ class SourceController extends BaseController {
         $data['runtime'] = round($runtime / 1000, 3);
         $data['query'] = $geshi->parse_code();
 
-        return View::make('file')->with('data', $data);
+        return View::make('file')->with('data', $data)->with('kind', 'mysql');
+    }
+
+    public function showPython($path)
+    {
+        // Retrive object from DB
+        $db = Query::where('name', $path)->get()->first();
+
+        // Get the Query source
+        $source = file_get_contents(base_path() . "/query/" . $path . ".py");
+        $geshi = new GeSHi(trim($source), 'python');
+
+        // Get the output
+        $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
+        $output = file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
+
+        // Get the config
+        $config = parse_ini_file(base_path() . "/query/" . $path . ".cnf");
+
+        // Get average run
+        $runtime = DB::table('executions')->where('query_id', $db->id)->avg('duration');
+
+        $data['file'] = $path;
+        $data['title'] = SourceController::linkedPath($path);
+        $data['results'] = $db->last_execution_results;
+        $data['output'] = SourceController::cleanWikiCode(trim($output),$config['project']);
+        $data['last_execution_at'] = $db->last_execution_at;
+        if ($config['author'] AND $config['author'] != 'unknown')
+            $data['author'] = $config['author'];
+        if ($config['license'])
+            $data['license'] = $config['license'];
+        if ($config['frequency'])
+            if ($config['frequency'] == 'default')
+                $data['frequency'] = 'daily';
+            else
+                $data['frequency'] = $config['frequency'];
+        $data['run'] = $db->times;
+        $data['runtime'] = round($runtime / 1000, 3);
+        $data['query'] = $geshi->parse_code();
+
+        return View::make('file')->with('data', $data)->with('kind', 'python');
     }
 
     public function showFolder($path)

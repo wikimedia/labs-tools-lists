@@ -25,7 +25,10 @@
         Query run {{$data['run']}} time taking {{$data['runtime']}} seconds<br />
     @endif
 
-    <h2>Query</h2>
+    @if ($kind == 'mysql')
+        <h2>Query</h2>
+    @elseif
+        <h2>Code</h2>
     {{$data['query']}}
 
 @stop
