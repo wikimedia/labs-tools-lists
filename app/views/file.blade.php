@@ -13,7 +13,7 @@
     @if (array_key_exists('author',$data))
         Author: {{$data['author']}}<br />
     @endif
-    @if (array_key_exists('license',$data)
+    @if (array_key_exists('license',$data))
         License: {{$data['license']}}<br />
     @endif
     @if (array_key_exists('frequency',$data)
