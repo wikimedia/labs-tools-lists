@@ -53,6 +53,13 @@ class ExecCrontab extends Command {
 				$this->error('Impossible to create the output folder');
 				return 1;
 			}
+		if ($db->kind == 'mysql')
+			return mysql($file);
+	}
+
+	public function mysql($file)
+	{
+		$db = Query::where('name', $file)->get()->first();
 		$date = date('Y-m-d H:i:s');
 		$outpath = base_path() . "/output/" . $file . "/" . Execution::getSafeDate($date);
 		$c = "mysql --defaults-file=~/replica.my.cnf -h {$config['project']}.labsdb -BN ";
