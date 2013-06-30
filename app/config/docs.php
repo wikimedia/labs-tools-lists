@@ -67,6 +67,6 @@ return array(
 	|
 	*/
 
-	'basehref' => '/docs/',
+	'basehref' => '/lists/docs/',
 
 );
