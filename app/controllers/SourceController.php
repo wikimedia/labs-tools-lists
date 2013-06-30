@@ -8,10 +8,47 @@ class SourceController extends BaseController {
             return View::make('folder')->with('path', $path);
         else
         {
-            return View::make('file')
-            	->with('file', $path)
-            	->with('path', $path);
+            return $this->showFile($path, $path);
         }
+    }
+
+    public function showFile($file)
+    {
+        // Retrive object from DB
+        $db = Query::where('name', $file)->get()->first();
+
+        // Get the Query source
+        $source = file_get_contents(base_path() . "/query/" . $file . ".sql");
+        $geshi = new GeSHi(trim($source), 'sql');
+
+        // Get the output
+        $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
+        $output = file_get_contents(base_path() . "/output/" . $file . "/" . $filename);
+
+        // Get the config
+        $config = parse_ini_file(base_path() . "/query/" . $file . ".cnf");
+
+        // Get average run
+        $runtime = DB::table('executions')->where('query_id', $db->id)->avg('duration');
+
+        $data['title'] = SourceController::linkedPath($path);
+        $data['results'] = $db->last_execution_results;
+        $data['output'] = SourceController::cleanWikiCode(trim($output),$config['project']);
+        $data['last_execution_at'] = $db->last_execution_at;
+        if ($config['author'] AND $config['author'] != 'unknown')
+            $data['author'] = $config['author'];
+        if ($config['license'])
+            $data['license'] = $config['license'];
+        if ($config['frequency'])
+            if ($config['frequency'] == 'default')
+                $data['frequency'] = 'daily';
+            else
+                $data['frequency'] = $config['frequency'];
+        $data['run'] = $db->times;
+        $data['runtime'] = round($runtime / 1000, 3);
+        $data['query'] = $geshi->parse_code();
+
+        return View::make('file')->with('data', $data);
     }
 
     public static function getDir($path, $exts = null)
