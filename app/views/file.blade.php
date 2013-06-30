@@ -10,13 +10,13 @@
 
     <h2>Information</h2>
     Last run: {{$data['last_execution_at']}}<br />
-    @if ($data['author'])
+    @if (array_key_exists('author',$data))
         Author: {{$data['author']}}<br />
     @endif
-    @if ($data['license'])
+    @if (array_key_exists('license',$data)
         License: {{$data['license']}}<br />
     @endif
-    @if ($data['frequency'])
+    @if (array_key_exists('frequency',$data)
         Frequency: {{$data['frequency']}}<br />
     @endif
     @if ($data['run'] != 1)
