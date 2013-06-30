@@ -120,6 +120,19 @@ class SourceController extends BaseController {
         return View::make('folder')->with('data', $data);
     }
 
+    public function showRaw($path)
+    {
+        // Retrive object from DB
+        $db = Query::where('name', $path)->get()->first();
+
+        // Get the output
+        $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
+        if (file_exists($filename))
+            echo file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
+        else
+            return '404';
+    }
+
     public static function getDir($path, $exts = null)
     {
         if (!is_dir(base_path() . "/" . $path))
