@@ -127,7 +127,7 @@ class SourceController extends BaseController {
 
         // Get the output
         $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
-        if (file_exists($filename))
+        if (file_exists(base_path() . "/output/" . $path . "/" . $filename))
             echo file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
         else
             return '404';
