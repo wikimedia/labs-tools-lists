@@ -52,6 +52,24 @@ class SourceController extends BaseController {
         return View::make('file')->with('data', $data);
     }
 
+    public function showFolder($path)
+    {
+        $data['path'] = $path;
+        $data['title'] = SourceController::linkedPath($path);
+        foreach (SourceController::getDir("query/" . $path, array('sql')) as $file)
+        {
+            if (strpos($file, ".")) {
+                $url = "/lists/" . $path . "/" . substr($file, 0, strpos($file, "."));
+                $label = str_replace('_', ' ', substr($file, 0, strpos($file, ".")));
+            } else {
+                $url = "/lists/" . $path . "/" . $file;
+                $label = str_replace('_', ' ', $file);
+            }
+            $data['list'][] = "<a href=\"" . $url . "\">" . $label . "</a>";
+        }
+        return View::make('folder')->with('data', $data);
+    }
+
     public static function getDir($path, $exts = null)
     {
         if (!is_dir(base_path() . "/" . $path))
