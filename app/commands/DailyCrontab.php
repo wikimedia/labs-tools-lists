@@ -4,6 +4,10 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
+/**
+ * @author Fabio Alessandro Locati <fabiolocati@gmail.com>
+ * @copyright AGPL-3.0
+ */
 class DailyCrontab extends Command {
 
 	/**
