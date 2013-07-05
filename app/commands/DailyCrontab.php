@@ -12,15 +12,11 @@ class DailyCrontab extends Command {
 
 	/**
 	 * The console command name.
-	 *
-	 * @var string
 	 */
 	protected $name = 'crontab:daily';
 
 	/**
 	 * The console command description.
-	 *
-	 * @var string
 	 */
 	protected $description = 'Daily crontab of the project';
 
