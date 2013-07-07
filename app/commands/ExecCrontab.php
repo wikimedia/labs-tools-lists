@@ -12,15 +12,11 @@ class ExecCrontab extends Command {
 
 	/**
 	 * The console command name.
-	 *
-	 * @var string
 	 */
 	protected $name = 'crontab:exec';
 
 	/**
 	 * The console command description.
-	 *
-	 * @var string
 	 */
 	protected $description = 'Perform a crontabbed query';
 
