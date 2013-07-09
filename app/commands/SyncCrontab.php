@@ -12,15 +12,11 @@ class SyncCrontab extends Command {
 
 	/**
 	 * The console command name.
-	 *
-	 * @var string
 	 */
 	protected $name = 'crontab:sync';
 
 	/**
 	 * The console command description.
-	 *
-	 * @var string
 	 */
 	protected $description = 'Sync db with cnf file';
 
