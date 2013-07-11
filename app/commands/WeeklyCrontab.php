@@ -12,15 +12,11 @@ class WeeklyCrontab extends Command {
 
 	/**
 	 * The console command name.
-	 *
-	 * @var string
 	 */
 	protected $name = 'crontab:weekly';
 
 	/**
 	 * The console command description.
-	 *
-	 * @var string
 	 */
 	protected $description = 'Weekly crontab of the project';
 
