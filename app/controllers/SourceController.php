@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Fabio Alessandro Locati <fabiolocati@gmail.com>
+ * @copyright Fabio Alessandro Locati 2013
+ * @license AGPL-3.0 http://www.gnu.org/licenses/agpl-3.0.html
+ */
 class SourceController extends BaseController {
 
     public function show($path = null)
