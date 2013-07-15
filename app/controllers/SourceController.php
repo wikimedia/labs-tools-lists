@@ -7,6 +7,11 @@
  */
 class SourceController extends BaseController {
 
+    /**
+     * Generic function to show files or folder to the user
+     * @param  string $path Path of the file/folder you want to show
+     * @return View to show
+     */
     public function show($path = null)
     {
         if (is_dir(base_path() . "/query/" . $path)) // Check if it's a folder
