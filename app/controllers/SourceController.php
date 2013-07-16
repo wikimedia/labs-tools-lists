@@ -22,6 +22,11 @@ class SourceController extends BaseController {
             App::abort(404);
     }
 
+    /**
+     * Generic function to show files to the user
+     * @param  string $path Path of the file you want to show
+     * @return View to show
+     */
     public function showFile($path)
     {
         if (file_exists(base_path() . "/query/" . $path . ".sql"))
