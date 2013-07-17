@@ -37,6 +37,11 @@ class SourceController extends BaseController {
             App::abort(404);
     }
 
+    /**
+     * Function to show mysql query to the user
+     * @param  string $path Meta-path of the file you want to show
+     * @return View to show
+     */
     public function showMysql($path)
     {
         // Retrive object from DB
