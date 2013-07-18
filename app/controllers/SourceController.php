@@ -82,6 +82,11 @@ class SourceController extends BaseController {
         return View::make('file')->with('data', $data)->with('kind', 'mysql');
     }
 
+    /**
+     * Function to show python files to the user
+     * @param  string $path Meta-path of the file you want to show
+     * @return View to show
+     */
     public function showPython($path)
     {
         // Retrive object from DB
