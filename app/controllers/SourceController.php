@@ -127,6 +127,11 @@ class SourceController extends BaseController {
         return View::make('file')->with('data', $data)->with('kind', 'python');
     }
 
+    /**
+     * Function to show folders to the user
+     * @param  string $path Path of the folder you want to show
+     * @return View to show
+     */
     public function showFolder($path)
     {
         $data['path'] = $path;
