@@ -150,6 +150,11 @@ class SourceController extends BaseController {
         return View::make('folder')->with('data', $data);
     }
 
+    /**
+     * Function to show the results of a query in a plain text format
+     * @param  string $path Meta-path of the file you want to show
+     * @return View to show
+     */
     public function showRaw($path)
     {
         // Retrive object from DB
