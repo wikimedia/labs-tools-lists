@@ -170,6 +170,12 @@ class SourceController extends BaseController {
         echo file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
     }
 
+    /**
+     * Function to show files to the user
+     * @param  string $path Path of the file you want to show
+     * @param array exts file extensions to show
+     * @return View to show
+     */
     public static function getDir($path, $exts = null)
     {
         if (!is_dir(base_path() . "/" . $path))
