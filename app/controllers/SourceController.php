@@ -199,6 +199,11 @@ class SourceController extends BaseController {
         }
     }
 
+    /**
+     * Create nicer pathname
+     * @param  string $path Path that you want to nicefy
+     * @return string       Nicefied path
+     */
     public static function linkedPath($path)
     {
     	$array = explode("/", $path);
