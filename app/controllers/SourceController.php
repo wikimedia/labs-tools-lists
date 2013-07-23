@@ -224,6 +224,12 @@ class SourceController extends BaseController {
     	return $out;
     }
 
+    /**
+     * Improve the rendering of MediaWiki MarkDown
+     * @param  string $code The code string
+     * @param  string $prj  Extended project name (ie: en.wikipedia)
+     * @return string       Improved MediaWiki code
+     */
     public static function cleanWikiCode($code, $prj)
     {
         $replace = '<a href="http://' . Config::get('project.' . $prj) . '/wiki/${1}">[[${0}]]</a>';
