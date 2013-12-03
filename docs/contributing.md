@@ -7,12 +7,12 @@
 <a name="introduction"></a>
 ## Introduction
 
-Lists is free, open-source software, meaning anyone can contribute to its development and progress. Lists source code is currently hosted on [WikiMedia infrastructure](https://git.wikimedia.org/summary/?r=labs/tools/lists.git). There is also a [github](github.com/wikimedia/labs-tools-lists/) copy which provides an easy method for forking the project and merging your contributions.
+Lists is free, open-source software, meaning anyone can contribute to its development and progress. Lists source code is currently hosted on [WikiMedia infrastructure](https://git.wikimedia.org/summary/?r=labs/tools/lists.git). There is also a [github](https://github.com/wikimedia/labs-tools-lists/) copy which provides an easy method for forking the project and merging your contributions.
 
 <a name="pull-requests"></a>
 ## Pull Requests
 
-The preferred tool to create pull requests is [gerrit](https://gerrit.wikimedia.org/r/#/admin/projects/labs/tools/lists) but is also possible to create them on [github](github.com/wikimedia/labs-tools-lists/) and the system will automagically ope them on gerrit too.
+The preferred tool to create pull requests is [gerrit](https://gerrit.wikimedia.org/r/#/admin/projects/labs/tools/lists) but is also possible to create them on [github](https://github.com/wikimedia/labs-tools-lists/) and the system will automagically ope them on gerrit too.
 
 <a name="coding-guidelines"></a>
 ## Coding Guidelines
