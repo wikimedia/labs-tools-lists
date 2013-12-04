@@ -1,6 +1,6 @@
 <?php
 
-$config = parse_ini_file(base_path() . "/../replica.my.cnf");
+$config = parse_ini_file(base_path() . "/replica.my.cnf");
 
 return array(
 
