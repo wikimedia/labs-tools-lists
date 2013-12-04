@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT( "# [[:Categoria:", nome, "|]]")
+SELECT CONCAT( "# [[:Categoria:", nome, "]]")
 	FROM (
     	SELECT cl_to AS nome, count( * ) AS numero
     		FROM categorylinks
