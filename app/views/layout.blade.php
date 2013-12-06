@@ -27,11 +27,11 @@
           </button>
           <a class="navbar-brand" href="/lists">Lists</a>
         </div>
-        <div class="collapse nav-collapse">
+        <div class="collapse navbar-collapse">
           <p class="navbar-text pull-right">
             <a href="/lists/docs" class="navbar-link">Docs</a>
           </p>
-          <ul class="nav navbar-collapse">
+          <ul class="nav navbar-nav">
             @foreach (SourceController::getDir("query") as $file)
               <li><a href="/lists/{{$file}}">{{$file}}</a></li>
             @endforeach
