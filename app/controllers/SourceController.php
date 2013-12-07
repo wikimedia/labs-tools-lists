@@ -53,7 +53,10 @@ class SourceController extends BaseController {
 
         // Get the output
         $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
-        $output = file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
+        if (file_exists(base_path() . "/output/" . $path . "/" . $filename))
+            $output = file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
+        else
+            $output = "";
 
         // Get the config
         $config = parse_ini_file(base_path() . "/query/" . $path . ".cnf");
