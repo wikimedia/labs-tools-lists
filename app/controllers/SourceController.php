@@ -183,11 +183,11 @@ class SourceController extends BaseController {
     {
         if (!is_dir(base_path() . "/" . $path))
             return array();
-    	$elements = scandir(base_path() . "/" . $path);
-  		unset($elements[0]);
-  		unset($elements[1]);
+        $elements = scandir(base_path() . "/" . $path);
+        unset($elements[0]);
+        unset($elements[1]);
         if (!is_array($exts))
-      		return array_values($elements);
+            return array_values($elements);
         else {
             if (sizeof($exts) == 1)
                 $rule = "/.*\." . implode('|', $exts) ."/i";
@@ -209,22 +209,22 @@ class SourceController extends BaseController {
      */
     public static function linkedPath($path)
     {
-    	$array = explode("/", $path);
-    	$out = "";
-    	$last = "/lists";
-    	$lastElementKey = sizeof($array) - 1;
+        $array = explode("/", $path);
+        $out = "";
+        $last = "/lists";
+        $lastElementKey = sizeof($array) - 1;
 
-    	foreach ($array as $k => $v) {
-    		if ($k < $lastElementKey) {
-    			$url = $last . "/" . $v;
+        foreach ($array as $k => $v) {
+            if ($k < $lastElementKey) {
+                $url = $last . "/" . $v;
                 $cv = str_replace('_', ' ', $v);
-	    		$out .= "<a href=\"" . $url . "\">" . $cv . "</a>/";
-    			$last = $url;
-    		}
-    	}
+                $out .= "<a href=\"" . $url . "\">" . $cv . "</a>/";
+                $last = $url;
+            }
+        }
 
-    	$out .= str_replace('_', ' ', $array[$lastElementKey]);
-    	return $out;
+        $out .= str_replace('_', ' ', $array[$lastElementKey]);
+        return $out;
     }
 
     /**
