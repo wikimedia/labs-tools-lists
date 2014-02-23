@@ -7,3 +7,4 @@ SELECT CONCAT( "# [[:Categoria:", nome, "]]")
  	) AS categorie
  	WHERE numero = 1
  	ORDER BY numero, nome
+	LIMIT 7500;
