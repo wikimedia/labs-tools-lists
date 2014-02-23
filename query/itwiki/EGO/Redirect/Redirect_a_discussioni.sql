@@ -1,6 +1,6 @@
 CONNECT itwiki_p itwiki.labsdb;
 SELECT CONCAT('#[[', ns_name, ':', page_title, ']]')
-  FROM page JOIN p50380g50614__lists.ns_it ON page_namespace = ns_id
+  FROM page AS p1 JOIN p50380g50614__lists.ns_it ON page_namespace = ns_id
   WHERE page_is_redirect = 1 AND page_namespace IN (1, 11, 15, 101, 103)
     AND NOT EXISTS( SELECT * 
       FROM pagelinks JOIN page AS p2 ON pl_from = p2.page_id 
