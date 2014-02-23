@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT('# [[Template:', p1.page_title, ']] punta alla disambigua [[', p2.page_title, ']]') 
+SELECT CONCAT('# [[Template:', p1.page_title, ']] punta alla disambigua ', p2.page_title) 
   FROM page AS p1 
     JOIN pagelinks 
     ON p1.page_id = pl_from 
