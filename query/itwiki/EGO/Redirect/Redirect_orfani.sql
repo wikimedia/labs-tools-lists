@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT('# [[', page_title, ']] - [[', rd_title, ']] ([[Speciale:PuntanoQui/', page_title, '|links al redirect]])')
+SELECT CONCAT('# [[', page_title, ']] - [[', rd_title, ']] ([[Speciale:PuntanoQui/', page_title, ']])')
   FROM page JOIN redirect ON page_id=rd_from
   WHERE page_namespace=0 AND rd_namespace = 0
     AND NOT EXISTS ( SELECT * 
