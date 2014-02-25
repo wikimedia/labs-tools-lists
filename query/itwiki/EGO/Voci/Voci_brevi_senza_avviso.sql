@@ -1,6 +1,6 @@
 CONNECT itwiki_p itwiki.labsdb;
 SELECT IF( EXISTS(SELECT * FROM templatelinks WHERE tl_from=page_id AND tl_namespace=10 AND tl_title='S'),
-         CONCAT('#[[', page_title, ']] - ', page_len, ' (Stub)'), CONCAT('#[[', page_title, ']] - ', page_len) )
+         CONCAT('# [[', page_title, ']] - ', page_len, ' (Stub)'), CONCAT('# [[', page_title, ']] - ', page_len) )
   FROM page
   WHERE page_namespace = 0 AND page_is_redirect = 0
     AND page_len < 250
