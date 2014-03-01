@@ -21,7 +21,7 @@
     @endif
     @if ($data['run'] != 1)
         Query run {{$data['run']}} times taking averagely {{$data['runtime']}} seconds<br />
-    @elseif
+    @else
         Query run {{$data['run']}} time taking {{$data['runtime']}} seconds<br />
     @endif
 
