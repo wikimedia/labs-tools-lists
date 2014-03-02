@@ -53,7 +53,10 @@ class SourceController extends BaseController {
 
         // Get the output
         $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
-        $output = file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
+        if (file_exists(base_path() . "/output/" . $path . "/" . $filename))
+            $output = file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
+        else
+            $output = "";
 
         // Get the config
         $config = parse_ini_file(base_path() . "/query/" . $path . ".cnf");
@@ -164,10 +167,10 @@ class SourceController extends BaseController {
         $db = Query::where('name', $path)->get()->first();
         $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
 
-        if (!file_exists(base_path() . "/output/" . $path . "/" . $filename))
-            App::abort(404);
-
-        echo file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
+        if (file_exists(base_path() . "/output/" . $path . "/" . $filename))
+            return file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
+        else
+            App::abort(404); 
     }
 
     /**
@@ -180,11 +183,11 @@ class SourceController extends BaseController {
     {
         if (!is_dir(base_path() . "/" . $path))
             return array();
-    	$elements = scandir(base_path() . "/" . $path);
-  		unset($elements[0]);
-  		unset($elements[1]);
+        $elements = scandir(base_path() . "/" . $path);
+        unset($elements[0]);
+        unset($elements[1]);
         if (!is_array($exts))
-      		return array_values($elements);
+            return array_values($elements);
         else {
             if (sizeof($exts) == 1)
                 $rule = "/.*\." . implode('|', $exts) ."/i";
@@ -206,22 +209,22 @@ class SourceController extends BaseController {
      */
     public static function linkedPath($path)
     {
-    	$array = explode("/", $path);
-    	$out = "";
-    	$last = "/lists";
-    	$lastElementKey = sizeof($array) - 1;
+        $array = explode("/", $path);
+        $out = "";
+        $last = "/lists";
+        $lastElementKey = sizeof($array) - 1;
 
-    	foreach ($array as $k => $v) {
-    		if ($k < $lastElementKey) {
-    			$url = $last . "/" . $v;
+        foreach ($array as $k => $v) {
+            if ($k < $lastElementKey) {
+                $url = $last . "/" . $v;
                 $cv = str_replace('_', ' ', $v);
-	    		$out .= "<a href=\"" . $url . "\">" . $cv . "</a>/";
-    			$last = $url;
-    		}
-    	}
+                $out .= "<a href=\"" . $url . "\">" . $cv . "</a>/";
+                $last = $url;
+            }
+        }
 
-    	$out .= str_replace('_', ' ', $array[$lastElementKey]);
-    	return $out;
+        $out .= str_replace('_', ' ', $array[$lastElementKey]);
+        return $out;
     }
 
     /**
@@ -233,8 +236,8 @@ class SourceController extends BaseController {
     public static function cleanWikiCode($code, $prj)
     {
         $replace = '<a href="http://' . Config::get('project.' . $prj) . '/wiki/${1}">[[${0}]]</a>';
-        $code = preg_replace('/\[\[(.*)\]\]/i', $replace, $code);
-        $code = preg_replace_callback('/\[\[(.*)\]\]/i', function ($matches) {
+        $code = preg_replace('/\[\[([^\]]*)\]\]/i', $replace, $code);
+        $code = preg_replace_callback('/\[\[([^\]]*)\]\]/i', function ($matches) {
             return str_replace('_', ' ', $matches[1]);
         }, $code);
         return $code;

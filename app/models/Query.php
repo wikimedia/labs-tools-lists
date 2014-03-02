@@ -7,16 +7,16 @@
  */
 class Query extends Eloquent{
 
-	/**
-	 * Specify table name
-	 * @var string
-	 */
-	protected $table = 'queries';
+    /**
+     * Specify table name
+     * @var string
+     */
+    protected $table = 'queries';
 
-	/**
-	 * Fillable elements
-	 * @var array
-	 */
-	protected $fillable = array('name', 'frequency', 'last_execution_at', 'last_execution_results');
+    /**
+     * Fillable elements
+     * @var array
+     */
+    protected $fillable = array('name', 'frequency', 'last_execution_at', 'last_execution_results');
 
 }

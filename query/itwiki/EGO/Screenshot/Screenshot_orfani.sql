@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT concat("#[[:Immagine:", page.page_title, "]]")
+SELECT concat("# [[:Immagine:", page.page_title, "]]")
   FROM page JOIN categorylinks ON page_id = cl_from
   WHERE cl_to LIKE 'Screenshot_copy%'
     AND page_namespace = 6

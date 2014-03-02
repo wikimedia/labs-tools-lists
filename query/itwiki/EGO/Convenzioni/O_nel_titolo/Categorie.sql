@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT('*[[:Categoria:', page_title, ']]')
+SELECT CONCAT('* [[:Categoria:', page_title, ']]')
   FROM page
   WHERE page_namespace = 14
     AND page_title like '%\_o\_%'
