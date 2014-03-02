@@ -1,7 +1,6 @@
 CONNECT itwiki_p itwiki.labsdb;
 SELECT DISTINCT CONCAT('* [[', p1.page_title, ']] - [[', SUBSTRING_INDEX(p1.page_title, '/', 1), ']]')
 FROM page as p1 
-JOIN page as p2 ON p2.page_title=SUBSTRING_INDEX(p1.page_title, '/', 1)
 WHERE p1.page_namespace = 0
   AND p1.page_is_redirect = 0
   AND p1.page_title LIKE '%/%'
