@@ -5,7 +5,10 @@
 @section('content')
     <h1>{{$data['title']}}</h1>
 
-    <h2>Output ({{$data['results']}})</h2>
+    <h2>
+        Output ({{$data['results']}})
+        <a href="{{str_replace('/lists/', '/lists/raw/', $_SERVER["REQUEST_URI"])}}">raw</a>
+    </h2>
     <pre class="txt" style="font-family:monospace;">{{$data['output']}}</pre>
 
     <h2>Information</h2>
