@@ -1,3 +1,4 @@
+CONNECT itwiki_p itwiki.labsdb;
 SELECT CONCAT("# [[", P.page_title, "]]")
 FROM page as P
 LEFT JOIN templatelinks as PT
