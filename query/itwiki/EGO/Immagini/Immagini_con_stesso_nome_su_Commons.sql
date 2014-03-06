@@ -4,5 +4,5 @@ SELECT CONCAT("* [[:File:", itwiki_p.image.img_name, "|]] (", itwiki_p.image.img
        commonswiki_f_p.image.img_size, ")")
 FROM image
 LEFT JOIN commonswiki_f_p.image
-WHERE commonswiki_f_p.image.img_name = itwiki_p.image.img_name
+ON commonswiki_f_p.image.img_name = itwiki_p.image.img_name
 ORDER BY itwiki_p.image.img_name;
