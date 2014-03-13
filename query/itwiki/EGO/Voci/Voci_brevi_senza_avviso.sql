@@ -3,7 +3,7 @@ SELECT IF( EXISTS(SELECT * FROM templatelinks WHERE tl_from=page_id AND tl_names
          CONCAT('# [[', page_title, ']] - ', page_len, ' (Stub)'), CONCAT('# [[', page_title, ']] - ', page_len) )
   FROM page
   WHERE page_namespace = 0 AND page_is_redirect = 0
-    AND page_len < 250
+    AND page_len < 300
     AND page_id NOT IN ( SELECT cl_from
       FROM categorylinks
       WHERE cl_to = 'Voci_protette'
@@ -13,5 +13,6 @@ SELECT IF( EXISTS(SELECT * FROM templatelinks WHERE tl_from=page_id AND tl_names
         OR cl_to LIKE 'Combinazioni_di%' 
         OR cl_to LIKE 'Aiutare%' 
         OR cl_to LIKE 'Liste_%'
+		OR cl_to LIKE 'Decenni_%'
         OR cl_to LIKE 'Pagine_protette_per_minacce_legali'  )
   ORDER BY page_len, page_title;
