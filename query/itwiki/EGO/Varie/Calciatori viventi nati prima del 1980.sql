@@ -11,5 +11,4 @@ SELECT CONCAT('# [[', page_title, ']]')
       AND NOT cl_to LIKE 'Nati_nel_198%'
       AND NOT cl_to LIKE 'Nati_nel_199%'
       AND NOT cl_to LIKE 'Nati_nel_2%'
-      AND NOT old_text REGEXP ".*ex (?=calciatore).*";
     ORDER BY page_title;
