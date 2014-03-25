@@ -13,7 +13,7 @@ SELECT IF( EXISTS(SELECT * FROM templatelinks WHERE tl_from=page_id AND tl_names
         OR cl_to LIKE 'Combinazioni_di%' 
         OR cl_to LIKE 'Aiutare%' 
         OR cl_to LIKE 'Liste_%'
-	 OR cl_to LIKE 'Decenni_%'
-	 OR cl_to LIKE 'Anni_%'
+        OR cl_to LIKE 'Decenni_%'
+        OR cl_to LIKE 'Anni_%'
         OR cl_to LIKE 'Pagine_protette_per_minacce_legali'  )
   ORDER BY page_len, page_title;
