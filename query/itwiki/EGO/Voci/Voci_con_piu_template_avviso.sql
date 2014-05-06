@@ -9,7 +9,11 @@ FROM (SELECT tl_from, COUNT(*) C
                        'Senzafonti','U', 'Merge', 'Da_unire', 'Correggere',
                        'Da_correggere', 'Errori_grammaticali', 'NN', 'N',
                        'Controlcopy', 'Voci_senza_uscita', 'Categorizzare',
-                       'Tmp', 'Manca_template', 'Tradurre', 'O')
+                       'Tmp', 'Manca_template', 'Tradurre', 'O', 'Dividi',
+                       'Chiarire', 'Non_chiaro', 'Da_chiarire', 'D',
+                       'Recentismo', 'Organizzare', 'Finzione', 'Fact',
+                       'Citazione_necessaria', 'Senza fonte', 'CN', 'Sf',
+                       'Cn', 'Citation_needed', 'S_sezione')
       GROUP BY tl_from
       ORDER BY C DESC
       LIMIT 100) T, page
