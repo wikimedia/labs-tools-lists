@@ -13,7 +13,7 @@ FROM (SELECT tl_from, COUNT(*) C
                        'Chiarire', 'Non_chiaro', 'Da_chiarire', 'D',
                        'Recentismo', 'Organizzare', 'Finzione', 'Fact',
                        'Citazione_necessaria', 'Senza fonte', 'CN', 'Sf',
-                       'Cn', 'Citation_needed', 'S_sezione')
+                       'Cn', 'Citation_needed', 'S_sezione', 'Da_aggiornare')
       GROUP BY tl_from
       ORDER BY C DESC
       LIMIT 100) T, page
