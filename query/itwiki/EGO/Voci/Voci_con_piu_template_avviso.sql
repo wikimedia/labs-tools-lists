@@ -16,7 +16,7 @@ FROM (SELECT tl_from, COUNT(*) C
                        'Cn', 'Citation_needed', 'S_sezione', 'Da_aggiornare')
       GROUP BY tl_from
       ORDER BY C DESC
-      LIMIT 100) T, page
+      LIMIT 1000) T, page
 WHERE page_id = tl_from
 AND page_namespace = 0
 ORDER BY C DESC;
