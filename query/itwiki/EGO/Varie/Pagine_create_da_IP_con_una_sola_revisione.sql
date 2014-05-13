@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT("# [[", ns_name, ":", page_title, "]]")
+SELECT DISTINCT CONCAT("# [[", ns_name, ":", page_title, "]]")
 FROM page, revision, p50380g50614__lists.ns_it
 WHERE page_id = rev_page
 AND page_namespace = ns_id
