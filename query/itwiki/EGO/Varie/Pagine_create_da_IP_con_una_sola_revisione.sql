@@ -6,5 +6,5 @@ AND page_namespace = ns_id
 AND page_is_new = 1
 AND page_is_redirect = 0
 AND rev_user = 0
-AND page_namespace IN (0, 4, 10, 12, 100, 102)
+AND page_namespace <> 0
 ORDER BY page_namespace, page_title;
