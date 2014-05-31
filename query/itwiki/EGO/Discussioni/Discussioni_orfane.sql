@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT('# [[', nstalk.ns_name, ':', disc.page_title, ']] ([[Speciale:PuntanoQui/', nstalk.ns_name, ':', disc.page_title, '|Link]] - [[Special:Undelete/', nspage.ns_name, ':', disc.page_title, '|pagina]] - ', disc.page_len, ' byte)')
+SELECT CONCAT('# [[', nstalk.ns_name, ':', disc.page_title, ']] ([[Speciale:PuntanoQui/', nstalk.ns_name, ':', disc.page_title, ']] - [[Special:Undelete/', nspage.ns_name, ':', disc.page_title, ']] - ', disc.page_len, ' byte)')
   FROM page as disc
   JOIN p50380g50614__lists.ns_it AS nstalk ON disc.page_namespace = nstalk.ns_id
   JOIN p50380g50614__lists.ns_it AS nspage ON (disc.page_namespace - 1) = nspage.ns_id

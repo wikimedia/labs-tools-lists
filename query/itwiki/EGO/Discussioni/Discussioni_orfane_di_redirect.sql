@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT('# [[', nstalk.ns_name, ':', page.page_title, ']] ([[Speciale:PuntanoQui/', nstalk.ns_name, ':', page.page_title, '|Link]]) -> [[', nspage.ns_name, ':', rd_title, ']] ([[', nstalk.ns_name, ':', rd_title, '|disc]])')
+SELECT CONCAT('# [[', nstalk.ns_name, ':', page.page_title, ']] ([[Speciale:PuntanoQui/', nstalk.ns_name, ':', page.page_title, ']]) -> [[', nspage.ns_name, ':', rd_title, ']] ([[', nstalk.ns_name, ':', rd_title, ']])')
 FROM redirect
 JOIN page ON rd_from = page_id
 INNER JOIN page AS disc ON page.page_title = disc.page_title
