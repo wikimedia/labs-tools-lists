@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT("# [[", page_title, "]]"), COUNT(rev_id)
+SELECT CONCAT("# [[", page_title, "]] - ", COUNT(rev_id))
 FROM page
 JOIN revision ON page_id = rev_page
 WHERE page_is_redirect = 0
