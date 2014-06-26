@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT('#[[', page_title, ']] - ', count(*)) 
+SELECT CONCAT('# [[', page_title, ']] - ', count(*)) 
   FROM langlinks JOIN page on ll_from = page_id 
   WHERE page_namespace = 0 AND page_is_redirect = 0 
     AND NOT EXISTS (
