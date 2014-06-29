@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT DISTINCT CONCAT("# [[", ns_name, ":", page_title, "]], (', DATE_FORMAT(rev_timestamp, '%e %b %Y, %H:%i'), ')")
+SELECT DISTINCT CONCAT("# [[", ns_name, ":", page_title, "]], (", DATE_FORMAT(rev_timestamp, '%e %b %Y, %H:%i'), ")")
 FROM page, revision, p50380g50614__lists.ns_it
 WHERE page_id = rev_page
 AND page_namespace = ns_id

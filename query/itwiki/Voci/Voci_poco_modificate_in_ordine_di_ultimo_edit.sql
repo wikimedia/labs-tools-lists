@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT("# [[", page_title, "]], (', DATE_FORMAT(rev_timestamp, '%e %b %Y, %H:%i'), ')")
+SELECT CONCAT("# [[", page_title, "]], (", DATE_FORMAT(rev_timestamp, '%e %b %Y, %H:%i'), ")")
 FROM page
 JOIN revision ON page_id = rev_page
 LEFT JOIN langlinks ON ll_from = rev_page
