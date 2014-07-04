@@ -3,8 +3,6 @@ SELECT CONCAT('# [[', page_title, ']]')
 FROM page
 WHERE page_namespace = 0
 AND page_is_redirect = 0
-AND rev_page = page_id
-AND rev_parent_id = 0
 AND page_title NOT IN
 (SELECT pl_title
 FROM pagelinks
