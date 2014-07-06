@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT('# [[', page_title, ']]')
+SELECT CONCAT('# [[', page_title, ']] - ', page_len)
 FROM page
 WHERE page_namespace = 0
 AND page_is_redirect = 0
