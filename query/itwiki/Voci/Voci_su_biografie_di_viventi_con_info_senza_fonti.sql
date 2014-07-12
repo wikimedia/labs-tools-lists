@@ -1,3 +1,4 @@
+CONNECT itwiki_p itwiki.labsdb;
 SELECT CONCAT('# [[', page_title, ']]')
     FROM page JOIN templatelinks ON page_id = tl_from
               JOIN categorylinks ON page_id = cl_from
