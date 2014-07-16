@@ -10,6 +10,9 @@
       body {
         padding-top: 50px;
       }
+      a:visited {
+        color: #2a6496;
+      }
     </style>
   </head>
   <body>
