@@ -12,6 +12,9 @@
 */
 
 Artisan::add(new DailyCrontab);
+Artisan::add(new TwiceWeeklyCrontab);
 Artisan::add(new WeeklyCrontab);
+Artisan::add(new TwiceMonthlyCrontab);
+Artisan::add(new MonthlyCrontab);
 Artisan::add(new ExecCrontab);
 Artisan::add(new SyncCrontab);
