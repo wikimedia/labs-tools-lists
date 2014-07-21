@@ -167,10 +167,15 @@ class SourceController extends BaseController {
         $db = Query::where('name', $path)->get()->first();
         $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
 
-        if (file_exists(base_path() . "/output/" . $path . "/" . $filename))
-            return file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
-        else
-            App::abort(404); 
+        if (file_exists(base_path() . "/output/" . $path . "/" . $filename)) {
+          $content = file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
+          $content = preg_replace('/.*\[\[([^\]]*)\]\].*/i', '${0}', $content);
+          $content = preg_replace_callback('/.*\[\[([^\]]*)\]\].*/i', function ($matches) {
+            return str_replace('_', ' ', $matches[1]);
+          }, $content);
+          return $content;
+        } else
+            App::abort(404);
     }
 
     /**
