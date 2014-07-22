@@ -39,7 +39,10 @@ The **frequency** field will be used to run the query. Actual valid values are:
 
 - default (currently means daily)
 - daily
+- twiceweekly
 - weekly
+- twicemonthly
+- monthly
 - none (the query will never be run)
 
 The **author** field asks for author name. If the query is taken from the wiki itself and is difficult or impossible to determine the author, set to `unknown`.
