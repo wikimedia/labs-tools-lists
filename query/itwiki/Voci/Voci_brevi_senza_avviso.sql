@@ -7,11 +7,11 @@ SELECT IF( EXISTS(SELECT * FROM templatelinks WHERE tl_from=page_id AND tl_names
     AND page_id NOT IN ( SELECT cl_from
       FROM categorylinks
       WHERE cl_to = 'Voci_protette'
-        OR cl_to LIKE 'Da_trasferire%' 
-        OR cl_to = 'Voci_trasferite' 
-        OR cl_to = 'Disambigua' 
-        OR cl_to LIKE 'Combinazioni_di%' 
-        OR cl_to LIKE 'Aiutare%' 
+        OR cl_to LIKE 'Da_trasferire%'
+        OR cl_to = 'Voci_trasferite'
+        OR cl_to = 'Disambigua'
+        OR cl_to LIKE 'Combinazioni_di%'
+        OR cl_to LIKE 'Aiutare%'
         OR cl_to LIKE 'Liste_%'
         OR cl_to LIKE 'Decenni_%'
         OR cl_to LIKE 'Anni_%'
