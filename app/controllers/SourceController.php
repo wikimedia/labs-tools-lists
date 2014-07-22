@@ -78,6 +78,10 @@ class SourceController extends BaseController {
                 $data['frequency'] = 'daily';
             else
                 $data['frequency'] = $config['frequency'];
+        if ($config['link']) {
+          $data['project'] = Config::get('project.' . $config['project']);
+          $data['link'] = $config['link'];
+        }
         $data['run'] = $db->times;
         $data['runtime'] = round($runtime / 1000, 3);
         $data['query'] = $geshi->parse_code();
@@ -240,7 +244,7 @@ class SourceController extends BaseController {
      */
     public static function cleanWikiCode($code, $prj)
     {
-        $replace = '<a href="http://' . Config::get('project.' . $prj) . '/wiki/${1}" target="_blank">[[${0}]]</a>';
+        $replace = '<a href="https://' . Config::get('project.' . $prj) . '/wiki/${1}" target="_blank">[[${0}]]</a>';
         $code = preg_replace('/\[\[([^\]]*)\]\]/i', $replace, $code);
         $code = preg_replace_callback('/\[\[([^\]]*)\]\]/i', function ($matches) {
             return str_replace('_', ' ', $matches[1]);

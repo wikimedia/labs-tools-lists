@@ -22,10 +22,13 @@
     @if (array_key_exists('frequency',$data))
         Frequency: {{$data['frequency']}}<br />
     @endif
+    @if (array_key_exists('link',$data))
+        Link: <a href="https://{{$data['project']}}/wiki/{{$data['link']}}" target="_blank">{{$data['link']}}</a><br />
+    @endif
     @if ($data['run'] != 1)
-        Query run {{$data['run']}} times taking averagely {{$data['runtime']}} seconds<br />
+        Query run {{$data['run']}} times taking averagely {{$data['runtime']}} seconds.<br />
     @else
-        Query run {{$data['run']}} time taking {{$data['runtime']}} seconds<br />
+        Query run {{$data['run']}} time taking {{$data['runtime']}} seconds.<br />
     @endif
 
     @if ($kind == 'mysql')
