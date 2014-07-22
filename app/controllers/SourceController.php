@@ -78,7 +78,7 @@ class SourceController extends BaseController {
                 $data['frequency'] = 'daily';
             else
                 $data['frequency'] = $config['frequency'];
-        if ($config['link']) {
+        if (array_key_exists('link', $config)) {
           $data['project'] = Config::get('project.' . $config['project']);
           $data['link'] = $config['link'];
         }
