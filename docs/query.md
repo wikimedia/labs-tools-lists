@@ -31,6 +31,7 @@ The structure of the file is:
 	project = itwiki
 	frequency = default
 	author = unknown
+	link = WP:EGO/E
 	license = CC-BY-SA
 
 The **project** field have to be the same as **[PROJECT_SLUG]** from before.
@@ -54,3 +55,5 @@ The **license** field asks for the query license. If the query is taken from the
 - GPL-3.0
 - **AGPL-3.0** (prefered)
 - MIT
+
+The **link** field asks for the page title of the list on Wikipedia. This field is optional.
