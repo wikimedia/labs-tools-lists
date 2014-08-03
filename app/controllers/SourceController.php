@@ -245,11 +245,12 @@ class SourceController extends BaseController {
     public static function cleanWikiCode($code, $prj)
     {
         $code = preg_replace_callback('/\[\[([^\]]*)\]\]/i', function ($matches) {
-            return '<a href="https://' . Config::get('project.' . $prj) . '/wiki/' . urlencode($matches[1]) . '" target="_blank">[[' . $matches[0] . ']]</a>';
+            return '<a href="https://%%PROJECT%%/wiki/' . urlencode($matches[1]) . '" target="_blank">[[' . $matches[0] . ']]</a>';
         }, $code);
         $code = preg_replace_callback('/\[\[([^\]]*)\]\]/i', function ($matches) {
             return str_replace('_', ' ', $matches[1]);
         }, $code);
+        $code = str_replace('%%PROJECT%%', Config::get('project.' . $prj), $code);
         return $code;
     }
 }
