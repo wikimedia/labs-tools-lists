@@ -1,7 +1,9 @@
 {
-    "name" : "Lists Project",
+    "name" : "labs-tools-lists",
+    "title" : "Lists Project",
     "description" : "Tool to view query to generate common lists for different wikis and their output.",
     "url" : "http://tools.wmflabs.org/lists/",
     "keywords" : "database, lists, query, search",
-    "author" : "Alessio, Fale, Incola"
+    "author" : "Alessio, Fale, Incola",
+    "repository" : "https://github.com/wikimedia/labs-tools-lists.git"
 }
