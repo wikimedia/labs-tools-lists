@@ -151,6 +151,7 @@ class SourceController extends BaseController {
             } else {
                 $url = "/lists/" . $path . "/" . $file;
                 $label = str_replace('_', ' ', $file);
+                $label = $label . "/";
             }
             $data['list'][] = "<a href=\"" . $url . "\">" . $label . "</a>";
         }
