@@ -1,9 +1,11 @@
 CONNECT itwiki_p itwiki.labsdb;
 SELECT CONCAT("# [[", page_title, "]]")
-  FROM page, templatelinks
+  FROM page, templatelinks, categorylinks
   WHERE page_namespace = 0
   AND page_id = tl_from
+  AND page_id = cl_from
   AND tl_title = 'Vetrina'
+  AND cl_to LIKE 'Voci_entrate_in_vetrina_nel_mese_di%'
   AND page_id IN (SELECT tl_from
     FROM templatelinks
 	WHERE tl_namespace = 10
@@ -18,4 +20,4 @@ SELECT CONCAT("# [[", page_title, "]]")
 					'Recentismo', 'Organizzare', 'Finzione', 'Fact',
 					'Citazione_necessaria', 'Senza fonte', 'CN', 'Sf',
 					'Cn', 'Citation_needed', 'S_sezione', 'Da_aggiornare'))
-  ORDER BY page_title;
+ORDER BY SUBSTRING(cl_to, -4, 4), page_title;
