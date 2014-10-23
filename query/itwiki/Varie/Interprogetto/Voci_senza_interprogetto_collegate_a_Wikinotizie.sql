@@ -9,6 +9,7 @@ FROM templatelinks
 WHERE tl_namespace = 10
 AND tl_title IN (
 'Interprogetto',
+'Interprogetto/notizia'
 'Ip',
 'Wikinews',
 'Disambigua' ) )
