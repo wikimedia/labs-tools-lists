@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT('# [[', p2.page_title, ']]')
+SELECT CONCAT('# [[', p1.page_title, ']] - [[Discussione:', p1.page_title, ']]')
 FROM page AS p1 JOIN templatelinks ON p1.page_id = tl_from, page AS p2
 WHERE p1.page_namespace = 1
 AND p1.page_is_redirect = 0
@@ -10,4 +10,8 @@ AND p2.page_is_redirect = 0
 AND p2.page_id NOT IN
 (SELECT ll_from
 FROM langlinks)
+AND p2.page_id NOT IN
+(SELECT pp_page
+FROM page_props
+WHERE pp_propname = 'disambiguation')
 ORDER BY p2.page_title;
