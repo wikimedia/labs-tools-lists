@@ -16,4 +16,7 @@ WHERE cl_to = 'Categorie_nascoste'
 AND page_id = cl_from))
 AND page_namespace = 0
 AND page_is_redirect = 0)
+AND page_id NOT IN 
+(SELECT pr_page 
+FROM page_restrictions)
 ORDER BY page_title;
