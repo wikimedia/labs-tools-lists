@@ -7,7 +7,7 @@
 <a name="introduction"></a>
 ## Introduction
 
-Lists is free, open-source software, meaning anyone can contribute to its development and progress. Lists source code is currently hosted on [WikiMedia infrastructure](https://git.wikimedia.org/summary/?r=labs/tools/lists.git). There is also a [github](https://github.com/wikimedia/labs-tools-lists/) copy which provides an easy method for forking the project and merging your contributions.
+Lists is free, open-source software, meaning anyone can contribute to its development and progress. Lists source code is currently hosted on [Wikimedia infrastructure](https://git.wikimedia.org/summary/?r=labs/tools/lists.git). There is also a [github](https://github.com/wikimedia/labs-tools-lists/) copy which provides an easy method for forking the project and merging your contributions.
 
 <a name="pull-requests"></a>
 ## Pull Requests
