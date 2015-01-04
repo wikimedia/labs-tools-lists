@@ -4,7 +4,7 @@ FROM page as P
 LEFT JOIN templatelinks as PT
   ON PT.tl_from = P.page_id
     AND PT.tl_namespace = 10
-    AND PT.tl_title IN ( "Disambigua", "Sigla", "Sigla2", "Sigla3", "Sigla4", "Cogni", "Nota disambigua", "Nota disambigua2" )
+    AND PT.tl_title IN ( "Disambigua", "Sigla", "Sigla2", "Sigla3", "Sigla4", "Cogni", "Nota_disambigua", "Nota_disambigua2" )
 LEFT JOIN pagelinks
   ON pl_namespace = 0
     AND pl_title = P.page_title
@@ -13,7 +13,7 @@ LEFT JOIN page as G
 LEFT JOIN templatelinks as GT
   ON GT.tl_from = G.page_id
     AND GT.tl_namespace = 10
-    AND GT.tl_title IN ( "Disambigua", "Sigla", "Sigla2", "Sigla3", "Sigla4", "Cogni", "Nota disambigua", "Nota disambigua2" )
+    AND GT.tl_title IN ( "Disambigua", "Sigla", "Sigla2", "Sigla3", "Sigla4", "Cogni", "Nota_disambigua", "Nota_disambigua2" )
 WHERE P.page_namespace = 0
   AND P.page_is_redirect = 0
   AND P.page_title LIKE "%_(%)"
