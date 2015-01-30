@@ -11,22 +11,18 @@ FROM page, page_props
 WHERE pp_propname = 'disambiguation'
 AND page_id = pp_page
 AND page_namespace = 0
-AND page_is_redirect = 0)
+AND page_is_redirect = 0
+AND page_title NOT LIKE '%(disambigua)')
 AND pl_from IN
 (SELECT page_id
 FROM page
 WHERE page_namespace = 0)
 AND page_id IN
 (SELECT page_id
-FROM page, templatelinks, categorylinks
+FROM page, categorylinks
 WHERE page_namespace = 0
-AND page_id = tl_from
 AND page_id = cl_from
-AND (cl_to LIKE 'Voci_di_qualità_valutate_nel_mese_di%'
-OR cl_to LIKE 'Voci_entrate_in_vetrina_nel_mese_di%' )
-AND ( tl_title = 'Voce_di_qualità'
-OR tl_title = 'Vdq'
-OR tl_title = 'VdQ'
-OR tl_title = 'Vetrina' ))
-GROUP  BY page_title
-ORDER  BY Count(*) DESC, page_title;
+AND (cl_to LIKE 'VdQ'
+OR cl_to LIKE 'Voci_in_vetrina_su_it.wiki'))
+GROUP BY page_title
+ORDER BY COUNT(*) DESC, page_title;
