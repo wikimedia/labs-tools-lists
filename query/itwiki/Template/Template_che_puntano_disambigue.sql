@@ -26,4 +26,5 @@ WHERE page_namespace = 10
        AND page_namespace = 0
        AND pp_propname = 'disambiguation')
   AND page_title NOT LIKE '%/man'
+  AND page_title NOT LIKE 'Nota_disambigua%'
 ORDER BY page_title;
