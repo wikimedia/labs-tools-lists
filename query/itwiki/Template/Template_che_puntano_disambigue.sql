@@ -26,9 +26,10 @@ WHERE page_namespace = 10
        AND page_namespace = 0
        AND pp_propname = 'disambiguation')
   AND page_title NOT LIKE '%/man'
-  AND page_title NOT LIKE '%/sandbox'
-  AND page_title NOT LIKE '%/test'
-  AND page_title NOT LIKE '%/esempi'
-  AND page_title NOT LIKE '%/prove'
+  AND page_title NOT LIKE '%/man/%'
+  AND page_title NOT REGEXP '[^/]*/(S|s)andbox'
+  AND page_title NOT REGEXP '[^/]*/(T|t)est'
+  AND page_title NOT REGEXP '[^/]*/(E|e)sempi'
+  AND page_title NOT REGEXP '[^/]*/(P|p)rove'
   AND page_title NOT LIKE 'Nota_disambigua%'
 ORDER BY page_title;
