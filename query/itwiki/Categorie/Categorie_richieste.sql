@@ -6,4 +6,5 @@ WHERE cl_to NOT IN
 FROM page
 WHERE page_namespace=14)
 AND cl_from = page_id
+AND page_namespace = 0
 ORDER BY cl_to;
