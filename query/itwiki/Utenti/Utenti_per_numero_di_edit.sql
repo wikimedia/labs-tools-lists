@@ -1,6 +1,6 @@
 CONNECT itwiki_p itwiki.labsdb;
 SET @counter = 0;
-SELECT @counter := @counter +1, user_name, user_editcount
+SELECT @counter := @counter +1, user_editcount, user_name
 FROM (SELECT user_name, user_editcount
 FROM user, user_groups
 WHERE user_id = ug_user
