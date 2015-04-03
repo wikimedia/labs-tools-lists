@@ -1,5 +1,4 @@
 # m h  dom mon dow   command
-0  *  *  *  * cd $HOME && git pull origin master > /dev/null 2>&1
 0  22  *  *  * jsub -N lists-daily -mem 1g -j y php $HOME/artisan crontab:daily > /dev/null
 0  23  *  *  2,5 jsub -N lists-twiceweekly -mem 1g -j y php $HOME/artisan crontab:twiceweekly > /dev/null
 0  23  *  *  0 jsub -N lists-weekly -mem 1g -j y php $HOME/artisan crontab:weekly > /dev/null
