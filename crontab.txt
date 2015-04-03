@@ -4,4 +4,4 @@
 0  23  *  *  2,5 jsub -N lists-twiceweekly -mem 1g -j y php $HOME/artisan crontab:twiceweekly > /dev/null
 0  23  *  *  0 jsub -N lists-weekly -mem 1g -j y php $HOME/artisan crontab:weekly > /dev/null
 0  0  5,20  *  * jsub -N lists-twicemonthly -mem 1g -j y php $HOME/artisan crontab:twicemonthly > /dev/null
-0  1  1  *  3 jsub -N lists-monthly -mem 1g -j y php $HOME/artisan crontab:monthly > /dev/null
+0  1  1  *  * jsub -N lists-monthly -mem 1g -j y php $HOME/artisan crontab:monthly > /dev/null
