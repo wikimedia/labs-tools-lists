@@ -14,4 +14,8 @@ AND p2.page_id NOT IN
 (SELECT pp_page
 FROM page_props
 WHERE pp_propname = 'disambiguation')
+AND p2.page_title NOT IN
+(SELECT pl_title
+FROM pagelinks
+WHERE pl_from = 5395952) /* Whitelist */
 ORDER BY p2.page_title;
