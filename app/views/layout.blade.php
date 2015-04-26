@@ -13,6 +13,8 @@
         color: #2a6496;
       }
     </style>
+	<script src="//tools-static.wmflabs.org/static/jquery/2.1.0/jquery.min.js"></script>
+    <script src="//tools-static.wmflabs.org/static/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -41,9 +43,6 @@
     <div class="container">
       @yield('content')
     </div> <!-- /container -->
-
-    <script src="//tools-static.wmflabs.org/static/jquery/2.1.0/jquery.min.js"></script>
-    <script src="//tools-static.wmflabs.org/static/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
   </body>
 </html>
