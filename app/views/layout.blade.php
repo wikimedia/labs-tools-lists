@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Lists Project - @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="//tools-static.wmflabs.org/static/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
       body {
         padding-top: 50px;
@@ -13,8 +13,8 @@
         color: #2a6496;
       }
     </style>
-	<script src="//tools-static.wmflabs.org/static/jquery/2.1.0/jquery.min.js"></script>
-    <script src="//tools-static.wmflabs.org/static/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="//tools-static.wmflabs.org/cdnjs/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
