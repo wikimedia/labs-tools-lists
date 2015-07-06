@@ -6,7 +6,7 @@ SELECT DISTINCT CONCAT('* [[', page.page_title, ']]') AS "Articles"
   LEFT JOIN templatelinks ON tl_from=page.page_id AND tl_namespace = 10 AND tl_title IN (
     'Film', 'StagioniTV', 'Fumetto_e_animazione', 'Episodio_SerieTV', 'ProgrammaTV', 
     'FictionTV', 'Personaggio', 'Infobox_personaggio_fittizio', 'Digimon_Infobox', 'Album', 
-    'Gamebox', 'Sistema_operativo', 'Software', 'Programma', 'Tour_musicale', 'ReteTV',
+    'Gamebox', 'Videogioco', 'Sistema_operativo', 'Software', 'Programma', 'Tour_musicale', 'ReteTV',
     'Personaggi_di_BLEACH', 'Personaggi_Street_Fighter', 'Kenshin', 'Festival_musicale',
     'Serie_animate_Disney', 'Monty_Python', 'Concorso_di_bellezza', 'Grande_Fratello_endgame'
   )
