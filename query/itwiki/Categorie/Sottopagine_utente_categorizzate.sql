@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT concat( "# [[Utente:", page_title, "]]" )
+SELECT CONCAT( "# [[Utente:", page_title, "]]" )
 	FROM page
 	WHERE page_namespace =2
 		AND page_is_redirect =0
@@ -7,5 +7,6 @@ SELECT concat( "# [[Utente:", page_title, "]]" )
 		AND page_id IN (
  			SELECT cl_from FROM categorylinks
  				WHERE cl_to NOT LIKE "Utent%"
- 					AND cl_to NOT LIKE "Wikipedia%")
+ 				AND cl_to NOT LIKE "Wikipedia%"
+				AND cl_to NOT LIKE "Pagine_non_indicizzate")
 	ORDER BY page_title;
