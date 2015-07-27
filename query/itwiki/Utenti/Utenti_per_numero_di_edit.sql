@@ -2,10 +2,17 @@ CONNECT itwiki_p itwiki.labsdb;
 SET @counter = 0;
 SELECT @counter := @counter +1, user_editcount, user_name
 FROM (SELECT user_name, user_editcount
-FROM user, user_groups
-WHERE user_id = ug_user
-AND ug_group NOT LIKE "bot"
-AND ug_group NOT LIKE "ipblock%"
+FROM user
+WHERE user_id NOT IN (
+SELECT ug_user
+FROM user_groups 
+WHERE ug_group = 'bot')
+AND user_name NOT IN (
+SELECT REPLACE(log_title, '_', ' ')
+FROM logging
+WHERE log_type = 'rights'
+AND log_params LIKE '%bot%'
+GROUP BY log_title)
 GROUP BY user_name) sub
 ORDER BY user_editcount DESC
 LIMIT 1000
