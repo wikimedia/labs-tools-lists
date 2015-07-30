@@ -17,6 +17,7 @@ SELECT REPLACE(log_title, '_', ' ')
 FROM logging
 WHERE log_type = 'rights'
 AND log_params LIKE '%bot%'
+AND log_params NOT LIKE '%sysop%'
 GROUP BY log_title)
 GROUP BY rev_user_text) sub
 ORDER BY pages_created DESC
