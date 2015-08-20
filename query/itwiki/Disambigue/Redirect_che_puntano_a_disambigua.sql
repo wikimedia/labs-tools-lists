@@ -1,0 +1,18 @@
+CONNECT itwiki_p itwiki.labsdb;
+SELECT CONCAT('# [[', page_title, ']] -> [[', rd_title, ']]')
+FROM page JOIN redirect ON page_id = rd_from
+WHERE page_namespace = 0 
+AND rd_namespace = 0
+AND rd_title IN
+(SELECT page_title
+FROM page
+WHERE page_id IN
+(SELECT pp_page
+FROM page_props
+WHERE pp_propname = 'disambiguation'))
+AND page_title IN
+(SELECT pl_title
+FROM pagelinks
+WHERE pl_from_namespace = 0
+AND pl_namespace = 0)
+ORDER BY page_title;
