@@ -8,4 +8,5 @@ AND pl_title NOT IN (
 SELECT page_title
 FROM page
 WHERE page_namespace = 100)
+AND pl_title NOT LIKE 'Televisione/Elenco%'
 ORDER BY pl_title, page_title;
