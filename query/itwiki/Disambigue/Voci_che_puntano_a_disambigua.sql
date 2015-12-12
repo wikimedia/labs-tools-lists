@@ -21,6 +21,6 @@ AND page_id NOT IN
 FROM page_props
 WHERE pp_propname = 'disambiguation')
 GROUP BY page_title
-HAVING COUNT(*) >= 10
+HAVING COUNT(*) >= 9
 ORDER BY COUNT(*) DESC
 LIMIT 5000;
