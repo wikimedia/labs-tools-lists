@@ -25,8 +25,9 @@ AND cl_to NOT LIKE "Modelli_senza_data"
 AND cl_to NOT LIKE "Errori_di_compilazione%"
 AND cl_to NOT LIKE "Pagine_con_errori_nelle_espressioni"
 AND cl_to NOT LIKE "Promemoria"
-AND cl_to NOT LIKE "Sportivi_con_immagine_non_presente_su_Wikidata"
+AND cl_to NOT LIKE "%Wikidata%"
 AND cl_to NOT LIKE "Strumenti_di_manutenzione"
 AND cl_to NOT LIKE "Collaborazioni%"
-AND cl_to NOT LIKE "Immagini%")
+AND cl_to NOT LIKE "Immagini%"
+AND cl_to NOT LIKE "Studenti_progetto%")
 ORDER BY page_title;

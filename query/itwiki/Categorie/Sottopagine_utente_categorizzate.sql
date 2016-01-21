@@ -9,7 +9,7 @@ SELECT cl_from FROM categorylinks
 WHERE cl_to NOT LIKE "Utent%"
 AND cl_to NOT LIKE "Wikipedia%"
 AND cl_to NOT LIKE "Pagine_non_indicizzate"
-AND cl_to NOT LIKE "Sportivi_con_immagine_non_presente_su_Wikidata"
+AND cl_to NOT LIKE "%Wikidata%"
 AND cl_to NOT LIKE "Wiki-Umorismo"
 AND cl_to NOT LIKE "Wikitraduttori%"
 AND cl_to NOT LIKE "Voci_tradotte%"
@@ -57,5 +57,6 @@ AND cl_to NOT LIKE "Organizzare"
 AND cl_to NOT LIKE "Scherzi_e_STUBidaggini"
 AND cl_to NOT LIKE "Suggerimento_immagini"
 AND cl_to NOT LIKE "Pagine_per_l'accessorio%"
-AND cl_to NOT LIKE "TemplateData")
+AND cl_to NOT LIKE "TemplateData"
+AND cl_to NOT LIKE "Pagine_con_grafici%")
 ORDER BY page_title;
