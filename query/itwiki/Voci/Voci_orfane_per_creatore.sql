@@ -20,10 +20,6 @@ WHERE cl_to = pl_title
 AND pl_namespace = 14
 AND pl_from = 4195411)) /* Wikipedia:ConnectivityProjectInternationalization/ArticlesNotFormingValidLinks */
 AND page_id NOT IN
-(SELECT pp_page
-FROM page_props
-WHERE pp_propname = 'disambiguation')
-AND page_id NOT IN
 (SELECT cl_from
 FROM categorylinks, pagelinks
 WHERE cl_to = pl_title
