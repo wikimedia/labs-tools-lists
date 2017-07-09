@@ -1,9 +1,13 @@
 CONNECT itwiki_p itwiki.labsdb;
 SELECT CONCAT('# [[', page_title, ']] - [[', rd_title, ']] ([[Speciale:PuntanoQui/', page_title, ']])')
-  FROM page JOIN redirect ON page_id=rd_from
-  WHERE page_namespace=0 AND rd_namespace = 0
-    AND NOT EXISTS ( SELECT * 
-      FROM page AS p JOIN pagelinks ON p.page_id = pl_from 
-        WHERE p.page_namespace IN (0, 4, 10, 12, 100, 102) AND pl_namespace = 0 AND pl_title = page.page_title)
-  ORDER BY page_title
-  LIMIT 7500;
+FROM page 
+LEFT JOIN pagelinks
+ON pl_title = page_title
+AND pl_namespace = page_namespace
+LEFT JOIN redirect
+ON rd_from = page_id
+WHERE page_namespace=0
+AND rd_namespace=0
+AND pl_namespace IS NULL
+ORDER BY page_title
+LIMIT 10000;
