@@ -246,12 +246,27 @@ class SourceController extends BaseController {
     public static function cleanWikiCode($code, $prj)
     {
         $code = preg_replace_callback('/\[\[([^\]]*)\]\]/i', function ($matches) {
-            return '<a href="https://%%PROJECT%%/wiki/' . urlencode($matches[1]) . '" target="_blank">[[' . $matches[0] . ']]</a>';
+            return '<a href="https://%%PROJECT%%/wiki/' . urlencode(SourceController::resolveNamespace($matches[1])) . '" target="_blank">[[' . $matches[0] . ']]</a>';
         }, $code);
-        $code = preg_replace_callback('/\[\[([^\]]*)\]\]/i', function ($matches) {
-            return str_replace('_', ' ', $matches[1]);
+        $code = preg_replace_callback('/\[{4}([^\]]*)\]\]/i', function ($matches) {
+            return str_replace('_', ' ', '[[' . SourceController::resolveNamespace($matches[1]));
         }, $code);
         $code = str_replace('%%PROJECT%%', Config::get('project.' . $prj), $code);
         return $code;
     }
+
+    public static function resolveNamespace($page_title)
+    {
+        if (substr($page_title, 0, 5) === '{{ns:') {
+            $page_title = preg_replace_callback('/(\{\{ns:[0-9]+\}\}):(.*)/', function ($matches) {
+                if ($matches[1] === '{{ns:0}}') {
+                    return $matches[2];
+                } else {
+                    return Config::get('namespace.' . $matches[1]) . ':' . $matches[2];
+                }
+            }, $page_title);
+        }
+        return $page_title;
+    }
+
 }
