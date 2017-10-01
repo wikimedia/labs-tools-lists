@@ -1,8 +1,7 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT CONCAT('* [[', x_nsname, ':', page_title, ']] - [[:File:', il_to, ']]')
-  FROM page, imagelinks, s51223__lists_p.x_namespaces
+SELECT CONCAT('* [[{{ns:', page_namespace, '}}:', page_title, ']] - [[:File:', il_to, ']]')
+  FROM page, imagelinks
   WHERE page_namespace NOT IN (0, 1, 2, 6)
-	AND page_namespace = x_nsnumber
     AND page_id = il_from
     AND il_to
       IN (SELECT page_title

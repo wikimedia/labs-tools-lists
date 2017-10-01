@@ -1,7 +1,7 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT DISTINCT CONCAT( '* [[', x_nsname, ':', page_title, ']]' )
-  FROM page JOIN s51223__lists_p.x_namespaces ON page_namespace = x_nsnumber
-    JOIN imagelinks ON page_id = il_from
+SELECT DISTINCT CONCAT( '* [[{{ns:', page_namespace, '}}:', page_title, ']]' )
+  FROM page
+  JOIN imagelinks ON page_id = il_from
   WHERE page_namespace NOT IN (0,6)
     AND il_to
       IN (SELECT page_title
@@ -11,6 +11,6 @@ SELECT DISTINCT CONCAT( '* [[', x_nsname, ':', page_title, ']]' )
     AND (page_namespace, page_title)
       NOT IN (SELECT pl_namespace, pl_title
         FROM pagelinks JOIN page ON pl_from = page_id
-        WHERE page_namespace=4 
+        WHERE page_namespace = 4 
           AND page_title = 'Elenchi_generati_offline/Screenshot/Whitelist')
-  ORDER BY x_nsname, page_title;
+  ORDER BY page_namespace, page_title;
