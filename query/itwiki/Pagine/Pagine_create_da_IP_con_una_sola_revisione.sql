@@ -1,5 +1,5 @@
 CONNECT itwiki_p itwiki.labsdb;
-SELECT DISTINCT CONCAT("# [[{{:", page_namespace, "}}:", page_title, "]], (", DATE_FORMAT(rev_timestamp, '%e %b %Y, %H:%i'), ")")
+SELECT DISTINCT CONCAT("# [[{{ns:", page_namespace, "}}:", page_title, "]], (", DATE_FORMAT(rev_timestamp, '%e %b %Y, %H:%i'), ")")
 FROM page, revision
 WHERE page_id = rev_page
 AND page_is_new = 1
