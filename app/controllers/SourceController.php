@@ -176,7 +176,7 @@ class SourceController extends BaseController {
           $content = file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
           $content = preg_replace('/.*\[\[([^\]]*)\]\].*/i', '${0}', $content);
           $content = preg_replace_callback('/.*\[\[([^\]]*)\]\].*/i', function ($matches) {
-            return str_replace('_', ' ', $matches[1]);
+            return str_replace('_', ' ', SourceController::resolveNamespace($matches[1]));
           }, $content);
           return $content;
         } else
