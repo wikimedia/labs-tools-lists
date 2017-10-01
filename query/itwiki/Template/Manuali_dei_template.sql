@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT("# [[Template:", page_title, "]]")
   FROM (SELECT REPLACE(page_title, '/man', '') AS page_title
     FROM page

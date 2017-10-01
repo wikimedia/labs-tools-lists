@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('# [[Template:', tl_title, ']] (', COUNT(*), ' collegamenti)')
 FROM templatelinks
 LEFT JOIN page ON ((page_namespace = tl_namespace) AND (page_title = tl_title))

@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT DISTINCT CONCAT('* [[', p1.page_title, ']] - [[', SUBSTRING_INDEX(p1.page_title, '/', 1), ']]')
 FROM page as p1
 WHERE p1.page_namespace = 0

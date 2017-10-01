@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT("# [[Template:", page_title, "]]")
 FROM page
 WHERE page_title NOT IN (

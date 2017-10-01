@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('* [[', rd_title, ']] - ', COUNT(*)) 
  FROM redirect
  JOIN page ON rd_from = page_id

@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT("# [[{{ns:", page_namespace, "}}:", page_title, "]] (", page_len, ")")
 FROM page
 WHERE page_namespace <> '0'

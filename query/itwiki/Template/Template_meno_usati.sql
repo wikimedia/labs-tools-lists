@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT("# [[:Template:", tl_title, "]] (", COUNT(*), ")")
 FROM templatelinks, page
 WHERE tl_namespace = 10

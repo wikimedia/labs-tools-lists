@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('# [[', page_title, ']]')
 FROM page, page_props
 WHERE pp_propname = 'disambiguation'

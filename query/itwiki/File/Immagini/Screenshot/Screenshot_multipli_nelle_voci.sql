@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('* [[', page_title, ']] - ', count(*) )
   FROM page JOIN imagelinks ON page_id = il_from
   WHERE page_namespace = 0

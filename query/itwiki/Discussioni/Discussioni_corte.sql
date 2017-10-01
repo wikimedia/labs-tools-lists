@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT("# [[Discussione:", page_title, "]] (", page_len, ")")
 FROM (SELECT page_title, page_len
 FROM page JOIN revision ON page_id = rev_page

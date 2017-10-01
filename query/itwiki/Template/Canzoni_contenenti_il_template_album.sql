@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT DISTINCT CONCAT("# [[", page_title, "]]")
   FROM page JOIN categorylinks ON page_id = cl_from
   WHERE

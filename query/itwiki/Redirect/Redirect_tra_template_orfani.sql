@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('# [[Template:', page_title, ']]')
   FROM page JOIN redirect ON page_id = rd_from
   WHERE page_namespace = 10 AND rd_namespace = 10

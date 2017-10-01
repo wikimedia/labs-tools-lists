@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('# [[Utente:', rev_user_text, ']] (', COUNT(*), ')')
 FROM page, revision
 WHERE page_id NOT IN

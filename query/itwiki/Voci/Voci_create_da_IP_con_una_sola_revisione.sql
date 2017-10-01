@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT DISTINCT CONCAT("# [[", page_title, "]]")
 FROM page, revision
 WHERE page_id = rev_page

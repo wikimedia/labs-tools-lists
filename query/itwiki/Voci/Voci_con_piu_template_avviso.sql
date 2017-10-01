@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT("# [[", page_title, "]] (", C, ")")
 FROM (SELECT tl_from, COUNT(*) C
       FROM templatelinks

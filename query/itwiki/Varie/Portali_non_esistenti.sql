@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT("# [[", page_title, "]] -> [[Portale:", pl_title, "]]")
 FROM pagelinks, page
 WHERE pl_from = page_id

@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('# [[:File:', page_title, ']]')
 FROM page
 WHERE page_namespace = 6

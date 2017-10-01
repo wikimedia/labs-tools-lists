@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('# [[', page_title, ']] (', DATE_FORMAT(rev_timestamp, '%e %b %Y, %H:%i'), ') (', COUNT(*), ')')
 FROM page, pagelinks, revision
 WHERE pl_title = page_title

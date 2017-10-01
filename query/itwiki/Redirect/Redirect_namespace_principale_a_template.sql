@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('# [[', page_title, ']] --> [[Template:', pl_title, ']]')
 FROM page, pagelinks
 WHERE page_is_redirect = 1

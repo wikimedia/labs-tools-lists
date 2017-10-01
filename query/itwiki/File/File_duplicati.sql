@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT( "# [[:File:", img1.img_name, "]] identica a [[:File:", img2.img_name, "]]" )
 FROM image AS img1
 JOIN image AS img2 ON img1.img_sha1 = img2.img_sha1

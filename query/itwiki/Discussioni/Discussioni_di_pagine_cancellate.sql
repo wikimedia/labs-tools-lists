@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('# [[{{ns:', disc.page_namespace, '}}:', disc.page_title, ']] (', DATE_FORMAT(rev_timestamp, '%e %b %Y, %H:%i'), ')')
   FROM page AS disc
   JOIN revision ON disc.page_latest = rev_id

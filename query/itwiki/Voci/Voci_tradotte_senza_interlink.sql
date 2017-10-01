@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('# [[', p1.page_title, ']] - [[Discussione:', p1.page_title, ']]')
 FROM page AS p1 JOIN templatelinks ON p1.page_id = tl_from, page AS p2
 WHERE p1.page_namespace = 1

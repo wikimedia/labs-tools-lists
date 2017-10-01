@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT DISTINCT CONCAT( '* [[', page_title, ']]' )
 FROM page JOIN imagelinks ON page_id = il_from
 WHERE page_namespace = 0

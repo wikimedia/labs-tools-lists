@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT distinct CONCAT("# [[", page_title, "]]")
 FROM page, revision
 LEFT JOIN langlinks ON ll_from = rev_page

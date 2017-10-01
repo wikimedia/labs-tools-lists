@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT("# [[", page_title, "]] - ", SUBSTRING(cl_to, -4, 4))
   FROM page, templatelinks, categorylinks
   WHERE page_namespace = 0

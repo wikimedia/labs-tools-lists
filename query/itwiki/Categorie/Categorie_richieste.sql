@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT("# [[:Categoria:", cl_to, "]] contiene [[", page_title, "]]")
 FROM categorylinks, page
 WHERE cl_to NOT IN

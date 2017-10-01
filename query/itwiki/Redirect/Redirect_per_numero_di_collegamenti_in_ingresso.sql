@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('# [[', page_title, ']] (', COUNT(*), ')')
 FROM page, pagelinks
 WHERE pl_title = page_title

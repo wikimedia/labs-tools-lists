@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('# [[Template:', p1.page_title, ']] punta al redirect [[', p2.page_title, ']]')
   FROM page AS p1
     JOIN pagelinks ON p1.page_id = pl_from

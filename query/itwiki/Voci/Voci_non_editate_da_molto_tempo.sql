@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT CONCAT('* [[', page_title, ']], (', DATE_FORMAT(rev_timestamp, '%e %b %Y, %H:%i'), ')')
   FROM page JOIN revision ON page_latest=rev_id
   WHERE page_namespace=0 AND page_is_redirect=0

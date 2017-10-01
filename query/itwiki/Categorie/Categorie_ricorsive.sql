@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SELECT concat("# [[:Categoria:" , cl_to , "]]")
  	FROM categorylinks, page
  	WHERE page_namespace =14

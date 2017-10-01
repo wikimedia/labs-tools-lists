@@ -1,4 +1,4 @@
-CONNECT itwiki_p itwiki.labsdb;
+USE itwiki_p;
 SET @counter = 0;
 SELECT @counter := @counter +1, pages_created, rev_user_text
 FROM (SELECT COUNT(*) as pages_created, rev_user_text

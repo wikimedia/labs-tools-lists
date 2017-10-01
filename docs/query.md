@@ -10,11 +10,11 @@ The query has to be a working MySQL/MariaDB query. Simply put it in a .sql file 
 
 As first line you will have to add the following line:
 
-	CONNECT [PROJECT_SLUG]_p [PROJECT_SLUG].labsdb;
+	USE [PROJECT_SLUG]_p;
 
 where **[PROJECT_SLUG]** will be the project codename: (enwiki for Wikipedia in English, itwiki for Wikipedia in Italian, etc). Ie for Wikipedia in Italian:
 
-	CONNECT itwiki_p itwiki.labsdb;
+	USE itwiki_p;
 
 <a name="the-config-file"></a>
 ## The config file
