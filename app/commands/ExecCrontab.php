@@ -55,14 +55,17 @@ class ExecCrontab extends Command {
 			}
 		$date = date('Y-m-d H:i:s');
 		$outpath = base_path() . "/output/" . $file . "/" . Execution::getSafeDate($date);
-		$c = "mysql --defaults-file=~/replica.my.cnf -h {$config['project']}.labsdb -BN ";
+		$c = "mysql --defaults-file=~/replica.my.cnf -h {$config['project']}.analytics.db.svc.eqiad.wmflabs -BN ";
 		$c.= "< {$filepath}.sql > {$outpath}.out";
 		$before = microtime(true);
 		$output = shell_exec($c);
 		$after = microtime(true);
 		$time = round(($after - $before) * 1000);
 		$lines = explode(' ',trim(shell_exec("wc -l {$outpath}.out")));
-		shell_exec(base_path() . '/update.sh ' . $db->id . ' ' . $date . ' ' . $time . ' ' . $lines[0]);
+		$c = "mysql --defaults-file=~/replica.my.cnf -h tools.db.svc.eqiad.wmflabs -e \"insert into executions (query_id, time, duration, results) values ($db->id, '$date', $time, $lines[0])\" s51223_db";
+		shell_exec($c);
+		$c = "mysql --defaults-file=~/replica.my.cnf -h tools.db.svc.eqiad.wmflabs -e \"update queries set times = times + 1, last_execution_at = '$date', updated_at = '$date', last_execution_results = $lines[0] where id = $db->id\" s51223_db";
+		shell_exec($c);
 	}
 
 	/**
