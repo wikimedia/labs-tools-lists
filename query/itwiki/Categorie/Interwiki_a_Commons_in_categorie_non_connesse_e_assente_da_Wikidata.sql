@@ -5,7 +5,7 @@ WHERE page_namespace = 14
 AND page_id IN
 (SELECT cl_from
 FROM categorylinks
-WHERE cl_to = 'Collegamento_interprogetto_a_Wikimedia_Commons_presente_ma_assente_da_Wikidata')
+WHERE cl_to = 'Collegamento_interprogetto_a_Wikimedia_Commons_presente_ma_assente_su_Wikidata')
 AND page_id NOT IN
 (SELECT ll_from
 FROM langlinks)
