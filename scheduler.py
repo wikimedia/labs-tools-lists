@@ -21,6 +21,9 @@ def process_list(cnf_path):
     run_path = cnf_path.replace(querydir, outputdir, 1)[:-3] + 'run'
     out_path = run_path[:-3] + 'out'
 
+    if not os.path.exists(os.path.dirname(run_path)):
+        os.makedirs(os.path.dirname(run_path))
+
     # Read the configuration file
     cnf_file = configparser.ConfigParser()
     cnf_file.read(cnf_path)
@@ -73,9 +76,6 @@ def process_list(cnf_path):
     runtime = (end_datetime - start_datetime).total_seconds()
 
     # Write run file
-    if not os.path.exists(os.path.dirname(run_path)):
-        os.makedirs(os.path.dirname(run_path))
-
     run_file['output']['last_run'] = str(end_datetime)
     run_file['output']['last_runtime'] = str(runtime)
     run_file['output']['run_counter'] = str(run_counter + 1)
