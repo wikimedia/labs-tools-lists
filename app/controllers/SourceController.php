@@ -78,6 +78,10 @@ class SourceController extends BaseController {
                 $data['frequency'] = 'daily';
             else
                 $data['frequency'] = $config['frequency'];
+        if (array_key_exists('link', $config)) {
+          $data['project'] = Config::get('project.' . $config['project']);
+          $data['link'] = $config['link'];
+        }
         $data['run'] = $db->times;
         $data['runtime'] = round($runtime / 1000, 3);
         $data['query'] = $geshi->parse_code();
@@ -147,6 +151,7 @@ class SourceController extends BaseController {
             } else {
                 $url = "/lists/" . $path . "/" . $file;
                 $label = str_replace('_', ' ', $file);
+                $label = $label . "/";
             }
             $data['list'][] = "<a href=\"" . $url . "\">" . $label . "</a>";
         }
@@ -167,10 +172,15 @@ class SourceController extends BaseController {
         $db = Query::where('name', $path)->get()->first();
         $filename = Execution::getSafeDate($db->last_execution_at) . ".out";
 
-        if (file_exists(base_path() . "/output/" . $path . "/" . $filename))
-            return file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
-        else
-            App::abort(404); 
+        if (file_exists(base_path() . "/output/" . $path . "/" . $filename)) {
+          $content = file_get_contents(base_path() . "/output/" . $path . "/" . $filename);
+          $content = preg_replace('/.*\[\[([^\]]*)\]\].*/i', '${0}', $content);
+          $content = preg_replace_callback('/.*\[\[([^\]]*)\]\].*/i', function ($matches) {
+            return str_replace('_', ' ', SourceController::resolveNamespace($matches[1]));
+          }, $content);
+          return $content;
+        } else
+            App::abort(404);
     }
 
     /**
@@ -235,11 +245,28 @@ class SourceController extends BaseController {
      */
     public static function cleanWikiCode($code, $prj)
     {
-        $replace = '<a href="http://' . Config::get('project.' . $prj) . '/wiki/${1}">[[${0}]]</a>';
-        $code = preg_replace('/\[\[([^\]]*)\]\]/i', $replace, $code);
         $code = preg_replace_callback('/\[\[([^\]]*)\]\]/i', function ($matches) {
-            return str_replace('_', ' ', $matches[1]);
+            return '<a href="https://%%PROJECT%%/wiki/' . urlencode(SourceController::resolveNamespace($matches[1])) . '" target="_blank">[[' . $matches[0] . ']]</a>';
         }, $code);
+        $code = preg_replace_callback('/\[{4}([^\]]*)\]\]/i', function ($matches) {
+            return str_replace('_', ' ', '[[' . SourceController::resolveNamespace($matches[1]));
+        }, $code);
+        $code = str_replace('%%PROJECT%%', Config::get('project.' . $prj), $code);
         return $code;
     }
+
+    public static function resolveNamespace($page_title)
+    {
+        if (substr($page_title, 0, 5) === '{{ns:') {
+            $page_title = preg_replace_callback('/(\{\{ns:[0-9]+\}\}):(.*)/', function ($matches) {
+                if ($matches[1] === '{{ns:0}}') {
+                    return $matches[2];
+                } else {
+                    return Config::get('namespace.' . $matches[1]) . ':' . $matches[2];
+                }
+            }, $page_title);
+        }
+        return $page_title;
+    }
+
 }

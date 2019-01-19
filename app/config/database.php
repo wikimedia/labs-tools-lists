@@ -50,19 +50,8 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'tools-db',
+			'host'      => 'tools.db.svc.eqiad.wmflabs',
 			'database'  => $config['user'] . '_db',
-			'username'  => $config['user'],
-			'password'  => $config['password'],
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-		),
-
-		'itwiki' => array(
-			'driver'    => 'mysql',
-			'host'      => 'itwiki.labsdb',
-			'database'  => 'itwiki_p',
 			'username'  => $config['user'],
 			'password'  => $config['password'],
 			'charset'   => 'utf8',
