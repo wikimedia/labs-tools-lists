@@ -1,0 +1,23 @@
+{% extends "path.html" %}
+{% block type %}File{% endblock %}
+{% block content %}{{ super() }}
+            <h2>Output ({{ info.lines }}) <a href="/lists/raw/{{ sub_path.full }}">raw</a></h2>
+
+<pre class="txt" style="font-family:monospace;">
+{{ out_list | replace("_", " ") }}</pre>
+
+            <h2>Information</h2>
+
+            Last run: {{ info.last_run }}<br />
+            Last runtime: {{ info.last_runtime }}<br />
+            {% if info.author %}Author: {{ info.author }}<br />{% endif %}
+            {% if info.license %}License: {{ info.license }}<br />{% endif %}
+            Frequency: {{ info.frequency }}<br />
+            {% if info.link %}Link: <a href="{{ info.project }}{{ info.link }}">{{ info.link | replace("_", " ") }}</a><br />{% endif %}
+            Query run {{ info.run_counter }} times taking averagely {{ info.run_average }} seconds.<br />
+
+            <h2>Query</h2>
+
+<pre class="sql" style="font-family:monospace;">
+{{ sql_list }}</pre>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "path.html" %}
+{% block type %}Folder{% endblock %}
+{% block content %}{{ super() }}
+{% for directory in directories %}        <li><a href="/lists/{{ sub_path.full }}/{{ directory }}">{{ directory | replace("_",
+        " ") }}/</a></li>
+{% endfor %}{% for file in files %}        <li><a href="/lists/{{ sub_path.full }}/{{ file }}">{{ file | replace("_", " ") }}</a></li>
+{% endfor %}{% endblock %}
