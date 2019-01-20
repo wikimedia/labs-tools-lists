@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, timezone
 querydir = 'query'
 outputdir = 'output_py'
 
-logging.basicConfig(filename='scheduler.log',
+logging.basicConfig(filename='scheduler.log', level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s')
 
 deltas = {'default': timedelta(days=1),
