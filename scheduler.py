@@ -1,11 +1,15 @@
 import os
-import configparser
+import logging
 import subprocess
+import configparser
 
 from datetime import datetime, timedelta, timezone
 
 querydir = 'query'
 outputdir = 'output_py'
+
+logging.basicConfig(filename='scheduler.log',
+                    format='%(asctime)s %(levelname)s %(message)s')
 
 deltas = {'default': timedelta(days=1),
           'daily': timedelta(days=1),
@@ -16,6 +20,8 @@ deltas = {'default': timedelta(days=1),
 
 
 def process_list(cnf_path):
+    logging.info('Processing list %s', cnf_path)
+
     # Create the paths
     sql_path = cnf_path[:-3] + 'sql'
     run_path = cnf_path.replace(querydir, outputdir, 1)[:-3] + 'run'
@@ -34,13 +40,13 @@ def process_list(cnf_path):
         project = cnf_file['query']['project']
         frequency = cnf_file['query']['frequency']
     except KeyError:
-        print('Invalid configuration file', cnf_path)
+        logging.exception('Invalid configuration file')
         return
 
     try:
         delta = deltas[frequency]
     except KeyError:
-        print('Invalid frequency in', cnf_path)
+        logging.exception('Invalid frequency')
         return
 
     # Read the run file
@@ -61,7 +67,7 @@ def process_list(cnf_path):
 
     # Check if we need to run the query
     if datetime.utcnow() < last_run + delta:
-        print('No need to run query', cnf_path)
+        logging.info('No need to run the query')
         return
 
     # Execute the query
@@ -74,7 +80,7 @@ def process_list(cnf_path):
     except subprocess.CalledProcessError:
         if os.path.exists(tmp_path):
             os.remove(tmp_path)
-        print('MySQL error with query', cnf_path)
+        logging.exception('Subprocess error')
         return
 
     end_datetime = datetime.utcnow()
@@ -92,8 +98,12 @@ def process_list(cnf_path):
 
 
 if __name__ == '__main__':
+    logging.info('Scheduler task has started')
+
     # For all the configuration files
     for root, subdirs, files in os.walk(querydir):
         for file_name in files:
             if file_name[-3:] == 'cnf':
                 process_list(os.path.join(root, file_name))
+
+    logging.info('Scheduler task has ended')
