@@ -5,7 +5,7 @@ import subprocess
 from datetime import datetime, timedelta, timezone
 
 querydir = 'query'
-outputdir = 'output_dev'
+outputdir = 'output_py'
 
 deltas = {'default': timedelta(days=1),
           'daily': timedelta(days=1),
@@ -19,8 +19,10 @@ def process_list(cnf_path):
     # Create the paths
     sql_path = cnf_path[:-3] + 'sql'
     run_path = cnf_path.replace(querydir, outputdir, 1)[:-3] + 'run'
+    tmp_path = run_path[:-3] + 'tmp'
     out_path = run_path[:-3] + 'out'
 
+    # Create the output directory
     if not os.path.exists(os.path.dirname(run_path)):
         os.makedirs(os.path.dirname(run_path))
 
@@ -67,8 +69,11 @@ def process_list(cnf_path):
 
     try:
         subprocess.run('mysql --defaults-file=~/replica.my.cnf -h ' + project +
-                       '.analytics.db.svc.eqiad.wmflabs -BN < ' + sql_path + ' > ' + out_path, shell=True, check=True)
+                       '.analytics.db.svc.eqiad.wmflabs -BN < ' + sql_path + ' > ' + tmp_path, shell=True, check=True)
+        os.replace(tmp_path, out_path)
     except subprocess.CalledProcessError:
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
         print('MySQL error with query', cnf_path)
         return
 
@@ -87,7 +92,7 @@ def process_list(cnf_path):
 
 
 if __name__ == '__main__':
-    # For all the configuration files in querydir
+    # For all the configuration files
     for root, subdirs, files in os.walk(querydir):
         for file_name in files:
             if file_name[-3:] == 'cnf':
