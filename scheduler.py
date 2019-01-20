@@ -20,8 +20,6 @@ deltas = {'default': timedelta(days=1),
 
 
 def process_list(cnf_path):
-    logging.info('Processing list %s', cnf_path)
-
     # Create the paths
     sql_path = cnf_path[:-3] + 'sql'
     run_path = cnf_path.replace(querydir, outputdir, 1)[:-3] + 'run'
@@ -40,13 +38,13 @@ def process_list(cnf_path):
         project = cnf_file['query']['project']
         frequency = cnf_file['query']['frequency']
     except KeyError:
-        logging.exception('Invalid configuration file')
+        logging.exception('Invalid configuration in %s', cnf_path)
         return
 
     try:
         delta = deltas[frequency]
     except KeyError:
-        logging.exception('Invalid frequency')
+        logging.exception('Invalid frequency in %s', cnf_path)
         return
 
     # Read the run file
@@ -67,10 +65,11 @@ def process_list(cnf_path):
 
     # Check if we need to run the query
     if datetime.utcnow() < last_run + delta:
-        logging.info('No need to run the query')
+        logging.info('No need to run %s', cnf_path)
         return
 
     # Execute the query
+    logging.info('Executing %s', cnf_path)
     start_datetime = datetime.utcnow()
 
     try:
@@ -80,7 +79,7 @@ def process_list(cnf_path):
     except subprocess.CalledProcessError:
         if os.path.exists(tmp_path):
             os.remove(tmp_path)
-        logging.exception('Subprocess error')
+        logging.exception('Subprocess error for %s', cnf_path)
         return
 
     end_datetime = datetime.utcnow()
