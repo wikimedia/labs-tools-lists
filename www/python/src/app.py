@@ -190,8 +190,8 @@ def show(sub_path):
 @app.route('/docs')
 @app.route('/docs/<section>')
 def docs(section='introduction'):
-    menu_path = os.path.join('docs', 'documentation.md')
-    document_path = os.path.join('docs', section + '.md')
+    menu_path = os.path.join(docsdir, 'documentation.md')
+    document_path = os.path.join(docsdir, section + '.md')
 
     if not os.path.isfile(menu_path) or not os.path.isfile(document_path):
         abort(404)
