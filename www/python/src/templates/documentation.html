@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}Documentation{% endblock %}
+{% block content %}
+        <header>
+            <h1>Documentation</h1>
+        </header>
+
+        <div class="row">
+            <div class="col-md-3">
+{{ menu | markdown }}
+            </div>
+
+            <div class="col-md-9">
+{{ document | markdown }}
+            </div>
+        </div>
+        <div class="clearfix"></div>
+{% endblock %}

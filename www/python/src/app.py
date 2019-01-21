@@ -5,11 +5,14 @@ import configparser
 from flask import Flask, Response, Markup
 from flask import abort, render_template, redirect, url_for
 
+from flaskext.markdown import Markdown
+
 from pygments import highlight
 from pygments.lexers.sql import MySqlLexer
 from pygments.formatters import HtmlFormatter
 
 app = Flask(__name__)
+Markdown(app)
 
 querydir = 'query'
 outputdir = 'output_py'
@@ -187,3 +190,20 @@ def show(sub_path):
                                 HtmlFormatter(nowrap=True, noclasses=True)))
 
     return render_template('file.html', projects=listdir(outputdir)[0], sub_path=split_path(sub_path), out_list=out_list, sql_list=sql_list, info=info)
+
+@app.route('/lists/docs')
+@app.route('/lists/docs/<section>')
+def docs(section='introduction'):
+    menu_path = os.path.join('docs', 'documentation.md')
+    document_path = os.path.join('docs', section + '.md')
+
+    if not os.path.isfile(menu_path) or not os.path.isfile(document_path):
+        abort(404)
+
+    with open(menu_path, 'r', encoding='utf-8') as fp:
+        menu = fp.read()
+
+    with open(document_path, 'r', encoding='utf-8') as fp:
+        document = fp.read()
+
+    return render_template('documentation.html', projects=listdir(outputdir)[0], menu=menu, document=document)
