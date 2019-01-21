@@ -46,10 +46,10 @@ def split_path(sub_path):
             abs_path += '/'
         abs_path += s
         if abs_path == sub_path:
-            result['split'].append({'rel': s})
+            result['split'].append({'rel': s.replace("_", " ")})
         else:
             result['split'].append({'abs': abs_path,
-                                    'rel': s})
+                                    'rel': s.replace("_", " ")})
 
     return result
 
