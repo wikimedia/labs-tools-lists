@@ -100,16 +100,11 @@ def page_not_found(e):
 
 
 @app.route('/')
-def root():
-    return redirect(url_for('home'))
-
-
-@app.route('/lists')
 def home():
     return render_template('home.html', projects=listdir(outputdir)[0])
 
 
-@app.route('/lists/raw/<path:sub_path>')
+@app.route('/raw/<path:sub_path>')
 def raw(sub_path):
     out_path = os.path.join(outputdir, sub_path + '.out')
 
@@ -124,7 +119,7 @@ def raw(sub_path):
     return Response(out_list, mimetype='text/plain')
 
 
-@app.route('/lists/<path:sub_path>')
+@app.route('/<path:sub_path>')
 def show(sub_path):
     base_path = os.path.join(outputdir, sub_path)
 
@@ -191,8 +186,8 @@ def show(sub_path):
 
     return render_template('file.html', projects=listdir(outputdir)[0], sub_path=split_path(sub_path), out_list=out_list, sql_list=sql_list, info=info)
 
-@app.route('/lists/docs')
-@app.route('/lists/docs/<section>')
+@app.route('/docs')
+@app.route('/docs/<section>')
 def docs(section='introduction'):
     menu_path = os.path.join('docs', 'documentation.md')
     document_path = os.path.join('docs', section + '.md')
