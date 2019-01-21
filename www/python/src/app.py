@@ -14,8 +14,9 @@ from pygments.formatters import HtmlFormatter
 app = Flask(__name__)
 Markdown(app)
 
-querydir = 'query'
-outputdir = 'output_py'
+querydir = '/data/project/lists/query'
+outputdir = '/data/project/lists/output'
+docsdir = '/data/project/lists/docs'
 
 project_links = {'itwiki': 'https://it.wikipedia.org/wiki/',
                  'itwikisource': 'https://it.wikisource.org/wiki/',

@@ -5,8 +5,8 @@ import configparser
 
 from datetime import datetime, timedelta, timezone
 
-querydir = 'query'
-outputdir = 'output_py'
+querydir = '/data/project/lists/query'
+outputdir = '/data/project/lists/output'
 
 logging.basicConfig(filename='scheduler.log', level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s')
