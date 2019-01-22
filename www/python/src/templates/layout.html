@@ -33,7 +33,7 @@
                 <p class="navbar-text pull-right">
                     <a href="/lists/docs" class="navbar-link">Docs</a>
                 </p>
-                <ul class="nav navbar-nav">{% for project in projects %}
+                <ul class="nav navbar-nav">{% for project in projects | sort %}
                     <li><a href="/lists/{{ project }}">{{ project }}</a></li>{% endfor %}
                 </ul>
             </div>
