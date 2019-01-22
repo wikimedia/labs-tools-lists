@@ -25,6 +25,7 @@ def process_list(cnf_path):
     run_path = cnf_path.replace(querydir, outputdir, 1)[:-3] + 'run'
     tmp_path = run_path[:-3] + 'tmp'
     out_path = run_path[:-3] + 'out'
+    list_path = cnf_path.replace(querydir, '')[1:-4]
 
     # Create the output directory
     if not os.path.exists(os.path.dirname(run_path)):
@@ -38,13 +39,13 @@ def process_list(cnf_path):
         project = cnf_file['query']['project']
         frequency = cnf_file['query']['frequency']
     except KeyError:
-        logging.exception('Invalid configuration in %s', cnf_path)
+        logging.exception('Invalid configuration in %s', list_path)
         return
 
     try:
         delta = deltas[frequency]
     except KeyError:
-        logging.exception('Invalid frequency in %s', cnf_path)
+        logging.exception('Invalid frequency in %s', list_path)
         return
 
     # Read the run file
@@ -65,11 +66,11 @@ def process_list(cnf_path):
 
     # Check if we need to run the query
     if datetime.utcnow() < last_run + delta:
-        logging.info('No need to run %s', cnf_path)
+        logging.info('No need to run %s', list_path)
         return
 
     # Execute the query
-    logging.info('Executing %s', cnf_path)
+    logging.info('Executing %s', list_path)
     start_datetime = datetime.utcnow()
 
     try:
@@ -79,7 +80,7 @@ def process_list(cnf_path):
     except subprocess.CalledProcessError:
         if os.path.exists(tmp_path):
             os.remove(tmp_path)
-        logging.exception('Subprocess error for %s', cnf_path)
+        logging.exception('Subprocess error for %s', list_path)
         return
 
     end_datetime = datetime.utcnow()
