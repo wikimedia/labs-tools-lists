@@ -20,7 +20,7 @@ docsdir = '/data/project/lists/docs'
 
 project_links = {'itwiki': 'https://it.wikipedia.org/wiki/',
                  'itwikisource': 'https://it.wikisource.org/wiki/',
-                 'wikidata': 'https://www.wikidata.org/wiki/'}
+                 'wikidatawiki': 'https://www.wikidata.org/wiki/'}
 
 
 def listdir(path):
@@ -186,6 +186,7 @@ def show(sub_path):
                                 HtmlFormatter(nowrap=True, noclasses=True)))
 
     return render_template('file.html', projects=listdir(outputdir)[0], sub_path=split_path(sub_path), out_list=out_list, sql_list=sql_list, info=info)
+
 
 @app.route('/docs')
 @app.route('/docs/<section>')
