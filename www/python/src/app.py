@@ -170,6 +170,8 @@ def show(sub_path):
 
     try:
         info['author'] = cnf_file['query']['author']
+        if info['author'] == '' or info['author'] == 'unknown':
+            info['author'] = None
     except KeyError:
         info['author'] = None
 
