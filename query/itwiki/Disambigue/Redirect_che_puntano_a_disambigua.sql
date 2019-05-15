@@ -11,7 +11,7 @@ WHERE page_id IN
 FROM page_props
 WHERE pp_propname = 'disambiguation'))
 AND page_title = pl_title
-AND pl_from_namespace = 0
+AND pl_from_namespace IN (0, 6)
 AND pl_namespace = 0
 GROUP BY page_title
 ORDER BY COUNT(*) DESC
