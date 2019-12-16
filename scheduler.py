@@ -12,7 +12,6 @@ logging.basicConfig(filename='scheduler.log', level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s')
 
 deltas = {'default': timedelta(days=1),
-          'none': timedelta.max,
           'daily': timedelta(days=1),
           'weekly': timedelta(weeks=1),
           'monthly': timedelta(weeks=4),
@@ -41,6 +40,10 @@ def process_list(cnf_path):
         frequency = cnf_file['query']['frequency']
     except KeyError:
         logging.exception('Invalid configuration in %s', list_path)
+        return
+
+    if frequency == 'none':
+        logging.exception('Skipping %s', list_path)
         return
 
     try:
