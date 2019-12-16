@@ -43,7 +43,7 @@ def process_list(cnf_path):
         return
 
     if frequency == 'none':
-        logging.exception('Skipping %s', list_path)
+        logging.info('Skipping %s', list_path)
         return
 
     try:
