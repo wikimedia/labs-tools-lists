@@ -12,6 +12,7 @@ logging.basicConfig(filename='scheduler.log', level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s')
 
 deltas = {'default': timedelta(days=1),
+          'none': timedelta.max,
           'daily': timedelta(days=1),
           'weekly': timedelta(weeks=1),
           'monthly': timedelta(weeks=4),
