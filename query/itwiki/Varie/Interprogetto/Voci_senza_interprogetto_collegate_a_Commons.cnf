@@ -1,6 +1,6 @@
 [query]
 project = itwiki
-frequency = weekly
+frequency = none
 author = Incola
 link = Wikipedia:Elenchi_generati_offline/Interprogetto_mancante
 license = CC-BY-SA
