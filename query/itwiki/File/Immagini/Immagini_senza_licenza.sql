@@ -1,3 +1,4 @@
+USE itwiki_p;
 SELECT CONCAT('# [[:File:', page_title, ']]') as filename
 FROM page
 WHERE page_namespace = 6
