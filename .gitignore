@@ -1,2 +1,11 @@
-/output/*
+.*
+!.gitignore
 __pycache__
+output/*
+venv/*
+*.manifest
+*.cnf
+*.err
+*.log
+*.out
+www/python/src/core
