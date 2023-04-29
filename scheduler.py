@@ -19,22 +19,21 @@ deltas = {'default': timedelta(days=1),
           'twicemonthly': timedelta(weeks=2)}
 
 
-def tuple_to_string(result):
+def tuple_to_string(row):
     string = ""
-    for row in result:
-        if len(row) == 1:
-            value = row[0]
+    if len(row) == 1:
+        value = row[0]
+        if isinstance(value, bytes):
+            value = value.decode('utf-8')
+        string += str(value) if value is not None else "NULL"
+        string += "\n"
+    else:
+        row_list = []
+        for value in row:
             if isinstance(value, bytes):
                 value = value.decode('utf-8')
-            string += str(value) if value is not None else "NULL"
-            string += "\n"
-        else:
-            row_list = []
-            for value in row:
-                if isinstance(value, bytes):
-                    value = value.decode('utf-8')
-                row_list.append(str(value) if value is not None else "NULL")
-            string += "\t".join(row_list) + "\n"
+            row_list.append(str(value) if value is not None else "NULL")
+        string += "\t".join(row_list) + "\n"
     return string
 
 
