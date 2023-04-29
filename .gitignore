@@ -9,3 +9,4 @@ venv/*
 *.log
 *.out
 www/python/src/core
+www/python/venv/*
