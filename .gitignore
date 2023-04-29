@@ -4,7 +4,7 @@ __pycache__
 output/*
 venv/*
 *.manifest
-*.cnf
+*.my.cnf
 *.err
 *.log
 *.out

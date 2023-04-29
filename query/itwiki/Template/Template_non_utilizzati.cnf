@@ -1,5 +1,5 @@
 [query]
 project = itwiki
-frequency = twicemonthly
+frequency = none
 author = Incola
 license = CC-BY-SA

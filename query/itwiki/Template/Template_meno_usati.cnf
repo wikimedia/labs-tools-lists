@@ -1,5 +1,5 @@
 [query]
 project = itwiki
-frequency = twicemonthly
+frequency = none
 author = AlessioMela
 license = CC-BY-SA
