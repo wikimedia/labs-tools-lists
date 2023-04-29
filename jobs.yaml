@@ -3,7 +3,7 @@
 - name: lists-scheduler
   command: $HOME/venv/bin/python3 $HOME/scheduler.py
   image: python3.9
-  schedule: "0 0,6,12,18 * * *"
+  schedule: "35 0,6,12,18 * * *"
   emails: onfailure
   mem: 1Gi
   filelog-stdout: /dev/null
