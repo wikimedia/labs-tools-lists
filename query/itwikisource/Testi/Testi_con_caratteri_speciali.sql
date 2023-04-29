@@ -1,4 +1,3 @@
-use itwikisource_p;
 select concat('[[', page.page_title, ']]') as titolo
 from page
 where page_is_redirect = 0

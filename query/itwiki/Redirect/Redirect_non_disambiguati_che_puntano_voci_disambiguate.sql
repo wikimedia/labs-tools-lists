@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('# [[', page_title, ']] -> [[', rd_title, ']]')
   FROM page JOIN redirect ON page_id = rd_from
   WHERE page_namespace = 0 

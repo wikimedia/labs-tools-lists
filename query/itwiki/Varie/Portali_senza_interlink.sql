@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('# [[Portale:', page_title, ']]')
 FROM page
 WHERE page_namespace=100

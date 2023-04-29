@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT DISTINCT CONCAT('# [[{{ns:', page_namespace, '}}:', page_title, ']] → [[{{ns:', rd_namespace, '}}:', rd_title, ']]')
 FROM page
 JOIN redirect ON page_id = rd_from

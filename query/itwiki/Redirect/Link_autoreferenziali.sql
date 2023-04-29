@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT DISTINCT CONCAT("# [[", page.page_title, "]]", " → [[", redirs.page_title, "]]")
 FROM page
 JOIN pagelinks ON pl_from = page_id

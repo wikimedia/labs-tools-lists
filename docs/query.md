@@ -8,14 +8,6 @@
 
 The query has to be a working MySQL/MariaDB query. Simply put it in a .sql file in the right subfolder of /query.
 
-As first line you will have to add the following line:
-
-	USE [PROJECT_SLUG]_p;
-
-where **[PROJECT_SLUG]** will be the project codename (enwiki for Wikipedia in English, itwiki for Wikipedia in Italian, etc). For example, for Wikipedia in Italian:
-
-	USE itwiki_p;
-
 <a name="the-config-file"></a>
 ## The config file
 
@@ -34,7 +26,7 @@ The structure of the file is:
 	license = CC-BY-SA
 	link = WP:EGO/E
 
-The **project** field has to be the same as **[PROJECT_SLUG]** from before.
+The **project** field represents the database.
 
 The **frequency** field will be used to run the query. Actual valid values are:
 

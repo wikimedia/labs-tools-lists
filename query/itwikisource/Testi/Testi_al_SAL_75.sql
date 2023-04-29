@@ -1,4 +1,3 @@
-use itwikisource_p;
 select concat('[[', page.page_title, ']]') as titolo
 from page
 join categorylinks catlink on catlink.cl_from = page.page_id

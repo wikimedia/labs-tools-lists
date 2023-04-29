@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT IF( EXISTS(SELECT * FROM templatelinks WHERE tl_from=page_id AND tl_namespace=10 AND tl_title='S'),
          CONCAT('# [[', page_title, ']] - ', page_len, ' (Stub)'), CONCAT('# [[', page_title, ']] - ', page_len) )
 FROM page

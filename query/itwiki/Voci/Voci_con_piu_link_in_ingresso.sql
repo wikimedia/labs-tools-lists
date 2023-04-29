@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT pl_title, COUNT(*)
 FROM pagelinks
 WHERE pl_namespace = 0

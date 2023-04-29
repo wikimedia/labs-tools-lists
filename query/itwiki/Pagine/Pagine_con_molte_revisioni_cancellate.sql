@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('# [[{{ns:', ar_namespace, '}}:', ar_title, ']]: ', COUNT(ar_rev_id))
 FROM archive
 GROUP BY ar_title

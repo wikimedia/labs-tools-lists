@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT("# [[", page_title, "]], (", DATE_FORMAT(rev_timestamp, '%e %b %Y, %H:%i'), ")")
 FROM page, revision
 WHERE page_namespace = 0

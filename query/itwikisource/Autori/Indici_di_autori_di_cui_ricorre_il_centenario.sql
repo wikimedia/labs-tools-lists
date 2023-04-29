@@ -1,4 +1,3 @@
-use itwikisource_p;
 select concat('SAL ', SAL, ': ', Indice, ' di ', Autore, ' (', Nascita, '-', Morte, ')')
 from (
 	select

@@ -1,9 +1,9 @@
-import os
-import logging
-import subprocess
 import configparser
+import logging
+import os
+from datetime import datetime, timedelta
 
-from datetime import datetime, timedelta, timezone
+import pymysql
 
 querydir = '/data/project/lists/query'
 outputdir = '/data/project/lists/output'
@@ -17,6 +17,47 @@ deltas = {'default': timedelta(days=1),
           'monthly': timedelta(weeks=4),
           'twiceweekly': timedelta(days=3, hours=12),
           'twicemonthly': timedelta(weeks=2)}
+
+
+def tuple_to_string(result):
+    string = ""
+    for row in result:
+        if len(row) == 1:
+            value = row[0]
+            if isinstance(value, bytes):
+                value = value.decode('utf-8')
+            string += str(value) if value is not None else "NULL"
+            string += "\n"
+        else:
+            row_list = []
+            for value in row:
+                if isinstance(value, bytes):
+                    value = value.decode('utf-8')
+                row_list.append(str(value) if value is not None else "NULL")
+            string += "\t".join(row_list) + "\n"
+    return string
+
+
+def run_query(input_file, output_file, project):
+    with open(input_file, "r") as f:
+        query = f.read()
+    
+    db = pymysql.connect(
+        read_default_file="~/replica.my.cnf",        
+        host=project + ".analytics.db.svc.eqiad.wmflabs",
+        database=project + "_p"
+    )
+    
+    cursor = db.cursor()
+    cursor.execute(query)
+    
+    results = cursor.fetchall()
+    
+    db.close()
+    
+    with open(output_file, "w") as f:
+        for result in results:
+            f.write(tuple_to_string(result))
 
 
 def process_list(cnf_path):
@@ -78,13 +119,12 @@ def process_list(cnf_path):
     start_datetime = datetime.utcnow()
 
     try:
-        subprocess.run('mysql --defaults-file=~/replica.my.cnf -h ' + project +
-                       '.analytics.db.svc.eqiad.wmflabs -BN < ' + sql_path + ' > ' + tmp_path, shell=True, check=True)
+        run_query(sql_path, tmp_path, project)
         os.replace(tmp_path, out_path)
-    except subprocess.CalledProcessError:
+    except:
         if os.path.exists(tmp_path):
             os.remove(tmp_path)
-        logging.exception('Subprocess error for %s', list_path)
+        logging.exception('MySQL error for %s', list_path)
         return
 
     end_datetime = datetime.utcnow()

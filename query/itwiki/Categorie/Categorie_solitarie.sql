@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT( "# [[:Categoria:", nome, "]]")
 	FROM (
     	SELECT cl_to AS nome, count( * ) AS numero

@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT( "# [[Discussioni_utente:", page_title, "]]" )
 FROM page
 LEFT JOIN revision ON page_latest = rev_id

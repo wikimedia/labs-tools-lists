@@ -1,4 +1,3 @@
-USE itwiki_p;
 SET @counter = 0;
 SELECT @counter := @counter +1, pages_created, actor_name
 FROM (SELECT COUNT(*) as pages_created, actor_name

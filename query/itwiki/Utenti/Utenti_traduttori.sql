@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT("# [[Utente:", rev_user_text, "]] (", COUNT(*), ")")
 FROM revision
 WHERE rev_page IN (

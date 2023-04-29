@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('# [[', page_title, ']] - [[', rd_title, ']] ([[Speciale:PuntanoQui/', page_title, ']])')
 FROM page 
 LEFT JOIN pagelinks

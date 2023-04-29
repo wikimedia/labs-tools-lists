@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('# [[', page_title, ']] in [[Categoria:', cl_to, ']]')
 FROM page, categorylinks
 WHERE page_is_redirect = 1

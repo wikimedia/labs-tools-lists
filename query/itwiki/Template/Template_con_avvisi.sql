@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT("# [[Template:", page_title, "]]")
 FROM page, templatelinks
 WHERE page_id = tl_from

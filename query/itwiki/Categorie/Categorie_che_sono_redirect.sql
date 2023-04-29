@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT("# [[:Categoria:", page_title, "]]")
 FROM page
 WHERE page_namespace = 14

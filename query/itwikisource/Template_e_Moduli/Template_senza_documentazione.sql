@@ -1,4 +1,3 @@
-use itwikisource_p;
 select concat('[[Template:', page_title, ']]') as template
 from page p
 where page_namespace = 10

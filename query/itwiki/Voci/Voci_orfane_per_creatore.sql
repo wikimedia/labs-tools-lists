@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('# [[Utente:', actor_name, ']] (', COUNT(*), ')')
 FROM page, revision JOIN actor ON actor_id = rev_actor
 WHERE page_namespace = 0

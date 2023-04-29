@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT(url, " (", COUNT(*), ")")
 FROM (
 	SELECT SUBSTRING_INDEX(SUBSTRING(el_to, LOCATE('://', el_to) + 3), '/', 1) url

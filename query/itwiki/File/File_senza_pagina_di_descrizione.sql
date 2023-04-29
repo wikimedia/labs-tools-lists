@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT("# [[:File:", img_name, "]]")
 FROM image
 WHERE img_name NOT IN (

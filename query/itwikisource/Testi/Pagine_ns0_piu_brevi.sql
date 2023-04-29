@@ -1,4 +1,3 @@
-use itwikisource_p;
 select concat('[[', page_title, ']]') as titolo, page_len as length
 from page
 where page_is_redirect = 0

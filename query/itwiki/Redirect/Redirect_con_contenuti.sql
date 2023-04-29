@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('# [[', page_title, ']]')
 FROM page, pagelinks
 WHERE page_is_redirect = 1

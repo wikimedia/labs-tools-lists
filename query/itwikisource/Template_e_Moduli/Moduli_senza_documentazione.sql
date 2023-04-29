@@ -1,4 +1,3 @@
-use itwikisource_p;
 select concat('[[Modulo:', page_title, ']]') as modulo
 from page p
 where page_namespace = 828

@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('# [[{{ns:', page_namespace, '}}:', page_title, ']]')
   FROM page AS p1
   WHERE page_is_redirect = 1 AND page_namespace IN (1, 11, 15, 101, 103)

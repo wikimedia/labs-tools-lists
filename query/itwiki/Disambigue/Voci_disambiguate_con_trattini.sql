@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('# [[', page_title, ']]', if( page_is_redirect, ' (Redirect)', '' ))
   FROM page
   WHERE page_namespace = 0

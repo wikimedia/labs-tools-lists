@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT DISTINCT CONCAT('* [[', page.page_title, ']]') AS "Articles"
   FROM page JOIN imagelinks ON il_from=page_id
   JOIN page AS image ON image.page_namespace=6 AND image.page_title=il_to

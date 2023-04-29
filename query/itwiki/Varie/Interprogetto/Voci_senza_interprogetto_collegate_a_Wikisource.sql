@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT DISTINCT CONCAT('# [[', page_title, ']]')
 FROM page
 WHERE page_namespace = 0

@@ -1,4 +1,3 @@
-use itwikisource_p;
 select concat('[[Autore:', replace(author.page_title, '_', ' '), ']]') as 'author/translator', 
 concat('[[', replace(text.page_title, '_', ' '), ']]') as text
 from page author

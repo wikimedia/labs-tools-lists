@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('# [[Template:', page_title, ']] -> [[', pl_title, ']]')
 FROM pagelinks,
      page

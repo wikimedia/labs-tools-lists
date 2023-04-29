@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT("# [[Discussioni_progetto:", page_title, "]] - ", page_len)
 FROM pagelinks
 JOIN page ON page_namespace = pl_namespace AND page_title = pl_title

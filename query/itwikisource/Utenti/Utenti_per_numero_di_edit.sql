@@ -1,4 +1,3 @@
-USE itwikisource_p;
 SET @counter = 0;
 SELECT @counter := @counter +1, user_editcount, user_name
 FROM (SELECT user_name, user_editcount

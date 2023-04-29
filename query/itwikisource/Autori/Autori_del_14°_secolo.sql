@@ -1,4 +1,3 @@
-use itwikisource_p;
 select concat(autore, ' (', ifnull(nascita, '?'), '-', ifnull(morte, ' '), ')')
 from (
 	select 

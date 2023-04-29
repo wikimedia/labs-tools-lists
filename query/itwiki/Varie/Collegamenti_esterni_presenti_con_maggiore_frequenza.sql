@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT( "# ", nome, " (", numero, ")")
 FROM (
 SELECT el_to AS nome, count( * ) AS numero

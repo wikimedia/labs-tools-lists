@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('# [[', page_title, ']] (', COUNT(*), ')')
 FROM pagelinks, page
 WHERE pl_from = page_id

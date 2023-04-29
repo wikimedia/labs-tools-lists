@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT("# [[", page_title, "]] - ", COUNT(rev_id))
 FROM page
 JOIN revision ON page_id = rev_page

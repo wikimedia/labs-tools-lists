@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT("# [[", page_title, "]]")
 FROM page
 JOIN revision ON page_id = rev_page

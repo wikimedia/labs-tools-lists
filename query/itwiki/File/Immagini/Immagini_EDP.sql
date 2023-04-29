@@ -1,4 +1,3 @@
-USE itwiki_p;
 SELECT CONCAT('* [[{{ns:', page_namespace, '}}:', page_title, ']] - [[:File:', il_to, ']]')
   FROM page, imagelinks
   WHERE page_namespace NOT IN (0, 1, 2, 6)
