@@ -1,5 +1,5 @@
 [query]
 project = itwikisource
-frequency = weekly
+frequency = none
 author = AlessioMela
 license = CC0
