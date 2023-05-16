@@ -1,4 +1,3 @@
-SET @counter = 0;
 SELECT @counter := @counter +1, pages_created, actor_name
 FROM (SELECT COUNT(*) as pages_created, actor_name
 FROM page, revision, actor
@@ -19,5 +18,6 @@ AND log_params LIKE '%bot%'
 AND log_params NOT LIKE '%sysop%'
 GROUP BY log_title)
 GROUP BY actor_name) sub
+CROSS JOIN (SELECT @counter := 0) x
 ORDER BY pages_created DESC
 LIMIT 1000;
