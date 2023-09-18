@@ -27,14 +27,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/lists">Lists</a>
+                <a class="navbar-brand" href="/">Lists</a>
             </div>
             <div class="collapse navbar-collapse">
                 <p class="navbar-text pull-right">
-                    <a href="/lists/docs" class="navbar-link">Docs</a>
+                    <a href="/docs" class="navbar-link">Docs</a>
                 </p>
                 <ul class="nav navbar-nav">{% for project in projects | sort %}
-                    <li><a href="/lists/{{ project }}">{{ project }}</a></li>{% endfor %}
+                    <li><a href="/{{ project }}">{{ project }}</a></li>{% endfor %}
                 </ul>
             </div>
         </div>

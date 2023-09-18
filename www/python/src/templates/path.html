@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block title %}{% block type %}{% endblock %} - {{ sub_path.full }}{% endblock %}
 {% block content %}
-        <h1>{% for split in sub_path.split %}{%if split.abs %}<a href="/lists/{{ split.abs }}">{{ split.rel }}</a>/{% else %}{{
+        <h1>{% for split in sub_path.split %}{%if split.abs %}<a href="/{{ split.abs }}">{{ split.rel }}</a>/{% else %}{{
     split.rel }}{% endif %}{% endfor %}</h1>
 {% endblock %}

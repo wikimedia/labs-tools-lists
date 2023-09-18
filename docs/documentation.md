@@ -1,6 +1,6 @@
 - Preface
-    - [Introduction](/lists/docs/introduction)
-    - [Contributing](/lists/docs/contributing)
+    - [Introduction](/docs/introduction)
+    - [Contributing](/docs/contributing)
 - Development
-    - [Add project](/lists/docs/project)
-    - [Add query](/lists/docs/query)
+    - [Add project](/docs/project)
+    - [Add query](/docs/query)

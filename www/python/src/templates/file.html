@@ -1,7 +1,7 @@
 {% extends "path.html" %}
 {% block type %}File{% endblock %}
 {% block content %}{{ super() }}
-            <h2>Output ({{ info.lines }}) <a href="/lists/raw/{{ sub_path.full }}">raw</a></h2>
+            <h2>Output ({{ info.lines }}) <a href="/raw/{{ sub_path.full }}">raw</a></h2>
 
 <pre class="txt" style="font-family:monospace;">
 {{ out_list | replace("_", " ") }}</pre>
