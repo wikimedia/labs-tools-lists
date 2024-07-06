@@ -9,8 +9,10 @@ WHERE page_id IN
 (SELECT pp_page
 FROM page_props
 WHERE pp_propname = 'disambiguation'))
-AND page_title = pl_title
 AND pl_from_namespace IN (0, 6)
-AND pl_namespace = 0
+AND pl_target_id IN
+(SELECT DISTINCT lt_id FROM linktarget
+  WHERE lt_namespace = 0
+ AND lt_title = page_title)
 GROUP BY page_title
 ORDER BY COUNT(*) DESC
