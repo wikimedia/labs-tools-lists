@@ -1,6 +1,0 @@
-- Preface
-    - [Introduction](/docs/introduction)
-    - [Contributing](/docs/contributing)
-- Development
-    - [Add project](/docs/project)
-    - [Add query](/docs/query)

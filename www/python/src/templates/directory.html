@@ -1,6 +1,0 @@
-{% extends "path.html" %}
-{% block type %}Folder{% endblock %}
-{% block content %}{{ super() }}
-{% for directory in directories | sort %}        <a href="/{{ sub_path.full }}/{{ directory }}">{{ directory | replace("_", " ") }}/</a><br />
-{% endfor %}{% for file in files | sort %}        <a href="/{{ sub_path.full }}/{{ file }}">{{ file | replace("_", " ") }}</a><br />
-{% endfor %}{% endblock %}

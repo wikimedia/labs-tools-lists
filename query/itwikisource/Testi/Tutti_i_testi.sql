@@ -1,3 +1,0 @@
-select concat('[[', page.page_title, ']]') as titolo
-from page
-order by page_title
